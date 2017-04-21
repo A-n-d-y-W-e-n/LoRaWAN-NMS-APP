@@ -1,0 +1,108 @@
+a {
+    cursor: pointer;
+}
+a.h1,a.btn,h1,h2,h3,h4,p,button {
+  font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  /*font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;*/
+}
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button1:hover {
+    background-color: #555555;
+    color: white;
+    border: 2px solid #fff;
+}
+
+.box-shadow1 {
+    box-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+}
+
+.text-shadow1 {
+    font-size: 80px;
+    font-weight: 1500;
+    color:#432C2C !important;
+    text-decoration: inherit !important;
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+}
+
+.text-shadow2 {
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+}
+
+.text-shadow3 {
+    color: #0C1D7D;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.container1 {
+    display: flex;
+    overflow: auto;
+    height: 85vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+}
+
+.movies_table_scrollable {
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    flex: 1;
+}
+
+.movies_table_scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+.movies_table_top {
+    display: fixed;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.list_scrollable {
+  overflow: scroll;
+  max-height: 500px;
+}
+
+.item_scrollable {
+  overflow: scroll;
+  max-width: 100%;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
