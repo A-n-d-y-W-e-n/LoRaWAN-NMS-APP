@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'puma'
 gem 'sinatra'
 gem 'json'
-gem 'sequel'
-gem 'sqlite3'
-gem 'mqtt'
+gem 'slim'
+gem 'http'
+gem 'econfig'
+gem 'rack-flash3'

@@ -1,6 +1,2 @@
 ---
-development:
-
-test:
-
-production:
+API_SERVER: 'http://localhost:9292'
