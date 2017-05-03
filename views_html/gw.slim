@@ -7,16 +7,28 @@ div.container-fluid.text-center
         li
           a href="/"  Home
         li.active
-          a href="/gw"  Gateways
+          a href="/gw"  Gateway
         li
-          a href="/app"  Applications
+          a href="/app"  Application
 
       ul.nav.navbar-nav.navbar-right
-            li
-              a href="#"
-                span.glyphicon.glyphicon-user
-                | Sign Up
-            li
-              a href="#"
-                span.glyphicon.glyphicon-log-in
-                | Login
+        li
+          a href="#"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, Andy
+        li
+          a href="#"
+            span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+            | Logout
+
+div.container id="map" style="width:1000px;height:600px;background:yellow"
+  script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap" 
+  javascript:
+    function myMap() {
+      var mapCanvas = document.getElementById("map");
+      var mapOptions = {
+        center: new google.maps.LatLng(51.5, -0.2), zoom: 10
+      };
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+    }
+    myMap();

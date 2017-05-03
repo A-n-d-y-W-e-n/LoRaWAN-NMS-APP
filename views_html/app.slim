@@ -7,16 +7,65 @@ div.container-fluid.text-center
         li
           a href="/"  Home
         li
-          a href="/gw"  Gateways
+          a href="/gw"  Gateway
         li.active
-          a href="/app"  Applications
+          a href="/app"  Application
 
       ul.nav.navbar-nav.navbar-right
-            li
-              a href="#"
-                span.glyphicon.glyphicon-user
-                | Sign Up
-            li
-              a href="#"
-                span.glyphicon.glyphicon-log-in
-                | Login
+        li
+          a href="#"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, Andy
+        li
+          a href="#"
+            span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+            | Logout
+
+div.container
+  h2 Application List
+  a.btn.btn-primary.box-shadow1 role="button" style="margin-top:5px;margin-bottom:5px;" data-toggle="modal" data-target="#myModal"
+    span.glyphicon.glyphicon-plus
+    | Application
+  .modal.fade role="dialog" id="myModal"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" type="button"  &times;
+          h4.modal-title New Application
+        .modal-body
+          .form
+            .input-group style="margin-left:20px;margin-right:20px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="app_name" name="app_name" placeholder="Application Name" type="text"
+            .input-group style="margin-top:5px;margin-bottom:5px;margin-left:20px;margin-right:20px;height:100px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="app_description" name="app_description" placeholder="Description" type="text" style="height:100px;"
+
+        .modal-footer
+          button.btn.btn-default type="submit" Create
+
+  div.table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Number of nodes
+      tbody
+        tr
+          td
+            a href="#" Smart Greenhouse
+          td Smart Greenhouse
+          td 5
+        tr
+          td
+            a href="#" Smart Campus
+          td Smart Campus
+          td 3
+        tr
+          td
+            a href="#" Farm
+          td Farm
+          td 14

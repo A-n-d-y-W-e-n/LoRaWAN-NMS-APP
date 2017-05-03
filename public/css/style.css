@@ -22,8 +22,8 @@ a.h1,a.btn,h1,h2,h3,h4,p,button {
 }
 
 .text-shadow1 {
-    font-size: 80px;
-    font-weight: 1500;
+    font-size: 50px;
+    font-weight: 2000;
     color:#432C2C !important;
     text-decoration: inherit !important;
     text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
@@ -35,7 +35,7 @@ a.h1,a.btn,h1,h2,h3,h4,p,button {
 
 .text-shadow3 {
     color: #0C1D7D;
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
 }
 

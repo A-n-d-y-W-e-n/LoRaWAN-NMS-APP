@@ -11,8 +11,6 @@ div.container-fluid.text-center style="background: url(/image/iot.jpg) no-repeat
     |Start to manage your LoRaWAN gateways and nodes properly!
   a.btn.btn-primary.btn-lg.box-shadow1 href="#login" role="button" style="margin-top:5px;"
     |Get Started
-  a.btn.btn-primary.btn-lg.box-shadow1 href="https://drive.google.com/file/d/0B7UkDModtj-UMDE4SHk4X0NsakU/view?usp=sharing" style="margin-left:20px;margin-top:5px;"
-    |Tutorial
 
 div.container-fluid.text-center id="login" style="background: url(https://s-media-cache-ak0.pinimg.com/originals/97/cf/f6/97cff69df87de4bcf8637a2b4ce0c64d.jpg) no-repeat center center;
   background-size: cover;
@@ -21,13 +19,38 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
   height: 100vh;
   overflow:scroll;"
   div.container
-    form
-      .form-group
-        h2 style="color:white;"
-          | Username:
-        input.form-control.input-lg type="text" style="width:20%; margin-left:40%; margin-top:10px;"
-      .form-group
-        h2 style="color:white;"
-          | Password:
-        input.form-control.input-lg type="password" style="width:20%; margin-left:40%;"
-      button.btn-lg.btn-default type="submit" href="/gw" Submit
+    h2 style="color:white;" Please Login or Register
+    .form style="width:20%; margin-left:40%;"
+      .input-group style="margin-top:20px;margin-bottom:20px;"
+        span.input-group-addon
+          i.glyphicon.glyphicon-user
+        input.form-control id="username" name="username" placeholder="Username" type="text"
+      .input-group style="margin-top:20px;margin-bottom:30px;"
+        span.input-group-addon
+          i.glyphicon.glyphicon-lock
+        input.form-control id="password" name="password" placeholder="Password" type="password"
+      button.btn.btn-default type="submit" style="margin-right:25px;"  data-toggle="modal" data-target="#myModal"
+        span.glyphicon.glyphicon-user style="margin-right:5px;"
+        | Sign Up
+      .modal.fade role="dialog" id="myModal"
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" type="button" &times;
+              h4.modal-title New User
+            .modal-body
+              .form
+                .input-group style="margin-left:20px;margin-right:20px;"
+                  span.input-group-addon
+                    i.glyphicon.glyphicon-user
+                  input.form-control id="add_username" name="add_username" placeholder="Username" type="text"
+                .input-group style="margin-top:5px;margin-bottom:5px;margin-left:20px;margin-right:20px;"
+                  span.input-group-addon
+                    i.glyphicon.glyphicon-lock
+                  input.form-control id="add_password" name="add_password" placeholder="Password" type="text"
+
+              .modal-footer
+                button.btn.btn-default type="submit" Create
+      button.btn.btn-default type="submit" href="/"
+        span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+        | Login
