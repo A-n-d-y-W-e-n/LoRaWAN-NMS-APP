@@ -3,10 +3,6 @@ API_SERVER = 'http://localhost:9292'
 
 class LORAWAN_NMS_APP < Sinatra::Base
   get '/' do
-
-    # username = 'andy'
-    # results = HTTP.get("#{API_SERVER}/app/#{username}")
-
     slim :main
   end
 
@@ -18,9 +14,12 @@ class LORAWAN_NMS_APP < Sinatra::Base
     username = params[:username]
     password = params[:password]
     results = HTTP.get("#{API_SERVER}/app/#{username}")
-    @data = results
-    puts @data
+    @data = JSON.parse(results.body)
     slim :app
+  end
+
+  get '/app/table?' do
+
   end
 
   get '/gw/?' do

@@ -30,7 +30,7 @@ div.container
     .modal-dialog
       .modal-content
         .modal-header
-          button.close data-dismiss="modal" type="button"  &times;
+          button.close data-dismiss="modal" type="button" &times;
           h4.modal-title New Application
         .modal-body
           form
@@ -52,20 +52,12 @@ div.container
         tr
           th Name
           th Description
-          th Number of nodes
       tbody
-        tr
-          td
-            a href="#" Smart Greenhouse
-          td Smart Greenhouse
-          td 5
-        tr
-          td
-            a href="#" Smart Campus
-          td Smart Campus
-          td 3
-        tr
-          td
-            a href="#" Farm
-          td Farm
-          td 14
+        -@data&.each do |a|
+          tr
+            td
+              a href="/"
+                | #{a['app_name']}
+            td
+              | #{a['app_description']}
+            
