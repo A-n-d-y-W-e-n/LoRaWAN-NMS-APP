@@ -18,8 +18,12 @@ class LORAWAN_NMS_APP < Sinatra::Base
     slim :app
   end
 
-  get '/app/table?' do
-
+  get "/node/:username/:app_name/?" do
+    username = params[:username]
+    app_name = params[:app_name]
+    results = HTTP.get("#{API_SERVER}/node/#{username}/#{app_name}")
+    @data = JSON.parse(results.body)
+    slim :node
   end
 
   get '/gw/?' do

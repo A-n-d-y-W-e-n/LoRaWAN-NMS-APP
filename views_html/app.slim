@@ -13,9 +13,10 @@ div.container-fluid.text-center
 
       ul.nav.navbar-nav.navbar-right
         li
-          a href="#"
-            span.glyphicon.glyphicon-user style="margin-right:5px;"
-            | Hi, Andy
+          -if @data
+            a href="#"
+              span.glyphicon.glyphicon-user style="margin-right:5px;"
+              | Hi, #{@data[0]['username']}
         li
           a href="#"
             span.glyphicon.glyphicon-log-in style="margin-right:5px;"
@@ -56,7 +57,7 @@ div.container
         -@data&.each do |a|
           tr
             td
-              a href="/"
+              a href="node/#{a['username']}/#{a['app_name']}"
                 | #{a['app_name']}
             td
               | #{a['app_description']}
