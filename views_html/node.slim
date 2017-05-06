@@ -30,12 +30,12 @@ div.container
       | Node
     .modal.fade role="dialog" id="myModal"
       .modal-dialog
-        .modal-content
-          .modal-header
-            button.close data-dismiss="modal" type="button" &times;
-            h4.modal-title New Node
-          .modal-body
-            form role="form" action="/create_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="get"
+        form role="form" action="/create_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" type="button" &times;
+              h4.modal-title New Node
+            .modal-body
               .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
@@ -48,8 +48,8 @@ div.container
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
                 input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey" type="text"
-          .modal-footer
-            button.btn.btn-default type="submit" Create
+            .modal-footer
+              button.btn.btn-default type="submit" Create
 
   div.table-responsive
     table.table.table-hover

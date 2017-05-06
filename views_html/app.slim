@@ -29,12 +29,12 @@ div.container
     | Application
   .modal.fade role="dialog" id="myModal"
     .modal-dialog
-      .modal-content
-        .modal-header
-          button.close data-dismiss="modal" type="button" &times;
-          h4.modal-title New Application
-        .modal-body
-          form
+      form role="form" action="/create_app/#{@data[0]['username']}" method="post"
+        .modal-content
+          .modal-header
+            button.close data-dismiss="modal" type="button" &times;
+            h4.modal-title New Application
+          .modal-body
             .input-group style="margin-left:20px;margin-right:20px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
@@ -43,9 +43,8 @@ div.container
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
               input.form-control id="app_description" name="app_description" placeholder="Description" type="text" style="height:100px;"
-
-        .modal-footer
-          button.btn.btn-default type="submit" Create
+          .modal-footer
+            button.btn.btn-default type="submit" Create
 
   div.table-responsive
     table.table.table-hover
@@ -57,7 +56,7 @@ div.container
         -@data&.each do |a|
           tr
             td
-              a href="node/#{a['username']}/#{a['app_name']}"
+              a href="/node/#{a['username']}/#{a['app_name']}"
                 | #{a['app_name']}
             td
               | #{a['app_description']}
