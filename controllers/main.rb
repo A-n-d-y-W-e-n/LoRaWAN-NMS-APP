@@ -102,4 +102,13 @@ class LORAWAN_NMS_APP < Sinatra::Base
     redirect "/gw"
   end
 
+  post '/create_user/?' do
+    new_username = params[:new_username]
+    new_user_email = params[:new_user_email]
+    new_password = params[:new_password]
+    results = HTTP.post("#{API_SERVER}/user/#{new_username}/#{new_user_email}/#{new_password}")
+
+    redirect "/user"
+  end
+
 end

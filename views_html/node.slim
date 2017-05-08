@@ -30,7 +30,7 @@ div.container
       | Node
     .modal.fade role="dialog" id="myModal"
       .modal-dialog
-        form role="form" action="/create_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
+        form action="/create_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button" &times;

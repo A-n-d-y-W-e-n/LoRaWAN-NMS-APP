@@ -37,19 +37,25 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
       | Sign Up
     .modal.fade role="dialog" id="myModal"
       .modal-dialog
-        .modal-content
-          .modal-header
-            button.close data-dismiss="modal" type="button" &times;
-            h4.modal-title New User
-          .modal-body
-            form role="form" action="/user" method="post"
+        form action="/create_user" method="post"
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" type="button" &times;
+              h4.modal-title Sign Up For LoRaWAN-NMS
+            .modal-body
               .input-group style="margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-user
-                input.form-control id="add_username" name="add_username" placeholder="Username" type="text"
+                input.form-control id="new_username" name="new_username" placeholder="Username" type="text"
+                
+              .input-group style="margin-top:5px;margin-left:20px;margin-right:20px;"
+                span.input-group-addon
+                  i.glyphicon.glyphicon-user
+                input.form-control id="new_user_email" name="new_user_email" placeholder="Email" type="text"
+
               .input-group style="margin-top:5px;margin-bottom:5px;margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-lock
-                input.form-control id="add_password" name="add_password" placeholder="Password" type="text"
-              .modal-footer
-                button.btn.btn-default type="submit" Create
+                input.form-control id="new_password" name="new_password" placeholder="Password" type="text"
+            .modal-footer
+              button.btn.btn-default type="submit" Sign Up
