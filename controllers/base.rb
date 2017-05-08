@@ -2,13 +2,13 @@
 
 # configure based on environment
 class LORAWAN_NMS_APP < Sinatra::Base
-  extend Econfig::Shortcut
-
-  configure do
-    Econfig.env = settings.environment.to_s
-    Econfig.root = File.expand_path('..', settings.root)
-  end
-
+  # extend Econfig::Shortcut
+  enable :sessions
+  # configure do
+  #   Econfig.env = settings.environment.to_s
+  #   Econfig.root = File.expand_path('..', settings.root)
+  # end
+  
   use Rack::Session::Cookie
   use Rack::Flash
 

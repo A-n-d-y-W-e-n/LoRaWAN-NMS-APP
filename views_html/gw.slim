@@ -31,7 +31,7 @@ div.container
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
-            h4.modal-title New Gateway
+            h4.modal-title Adding a New Gateway into LoRaWAN
           .modal-body
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
@@ -50,7 +50,7 @@ div.container
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_loc" name="gw_loc" placeholder="Gateway Location" type="text"
           .modal-footer
-            button.btn.btn-default type="submit" Create
+            button.btn.btn-default type="submit" Add
   div.table-responsive
     table.table.table-hover
       thead
@@ -73,9 +73,10 @@ div.container
             td
               | #{a['gw_loc']}
             td
-              button.btn.btn-default.btn-sm type="button"
-                span.glyphicon.glyphicon-trash
-                  | Delete
+              form action="/delete_gw/#{a['gw_mac']}" method="post"
+                button.btn.btn-default.btn-sm type="submit"
+                  span.glyphicon.glyphicon-trash
+                    | Delete
 
   div.container id="map" style="width:1000px;height:600px;background:yellow"
     script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=myMap" 

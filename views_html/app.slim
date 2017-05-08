@@ -33,7 +33,7 @@ div.container
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
-            h4.modal-title New Application
+            h4.modal-title Create a New Application in LoRaWAN
           .modal-body
             .input-group style="margin-left:20px;margin-right:20px;"
               span.input-group-addon
@@ -62,6 +62,7 @@ div.container
             td
               | #{a['app_description']}
             td
-              button.btn.btn-default.btn-sm type="button"
-                span.glyphicon.glyphicon-trash
-                  | Delete
+              form action="/delete_app/#{a['username']}/#{a['app_name']}" method="post"
+                button.btn.btn-default.btn-sm type="submit"
+                  span.glyphicon.glyphicon-trash
+                    | Delete

@@ -34,22 +34,22 @@ div.container
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button" &times;
-              h4.modal-title New Node
+              h4.modal-title Adding a New Node into LoRaWAN
             .modal-body
               .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr(8 HEX digits)" type="text"
+                input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr (8 HEX digits)" type="text"
               .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey(32 HEX digits)" type="text"
+                input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey (32 HEX digits)" type="text"
               .input-group style="margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey(32 HEX digits)" type="text"
+                input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey (32 HEX digits)" type="text"
             .modal-footer
-              button.btn.btn-default type="submit" Create
+              button.btn.btn-default type="submit" Add
 
   div.table-responsive
     table.table.table-hover
@@ -63,7 +63,7 @@ div.container
             td
               | #{a['node_addr']}
             td
-              form action="/delete_node/#{a['username']}/#{a['app_name']}/#{a['node_addr']}" method="delete"
+              form action="/delete_node/#{a['username']}/#{a['app_name']}/#{a['node_addr']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete
