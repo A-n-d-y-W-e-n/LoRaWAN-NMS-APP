@@ -26,9 +26,12 @@ class LORAWAN_NMS_APP < Sinatra::Base
     username = params[:username]
     app_name = params[:app_name]
     results = HTTP.get("#{API_SERVER}/node/#{username}/#{app_name}")
-    if results.code == 200
+
+    if results.body != []
       @data = JSON.parse(results.body)
       slim :node
+    # else
+    #   @data[0][:username] = username
     end
   end
 
@@ -62,5 +65,15 @@ class LORAWAN_NMS_APP < Sinatra::Base
     results = HTTP.post("#{API_SERVER}/app/#{username}/#{app_name}/#{app_description}")
 
     redirect "/app/?username=#{username}"
+  end
+
+  post '/create_gw/?' do
+    gateway_name = params[:gw_name]
+    gateway_mac = params[:gw_mac]
+    gateway_ip = params[:gw_ip]
+    gateway_loc = params[:gw_loc]
+    results = HTTP.post("#{API_SERVER}/gateway/#{gateway_name}/#{gateway_mac}/#{gateway_ip}/#{gateway_loc}")
+
+    redirect "/gw"
   end
 end
