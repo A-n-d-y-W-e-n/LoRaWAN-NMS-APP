@@ -49,11 +49,8 @@ class LORAWAN_NMS_APP < Sinatra::Base
     DevAddr = params[:DevAddr]
     NwkSKey = params[:NwkSKey]
     AppSKey = params[:AppSKey]
-    puts username
-    puts app_name
-    puts DevAddr
-    puts NwkSKey
-    puts AppSKey
+    results = HTTP.post("#{API_SERVER}/node/#{username}/#{app_name}/#{DevAddr}")
+    results2 = HTTP.post("#{API_SERVER}/node/abp/#{DevAddr}/#{NwkSKey}/#{AppSKey}")
 
     redirect "/node/#{username}/#{app_name}/?"
   end
@@ -75,5 +72,14 @@ class LORAWAN_NMS_APP < Sinatra::Base
     results = HTTP.post("#{API_SERVER}/gateway/#{gateway_name}/#{gateway_mac}/#{gateway_ip}/#{gateway_loc}")
 
     redirect "/gw"
+  end
+
+  delete "/delete_node/:username/:app_name/:node_addr/?" do
+    username = params[:username]
+    app_name = params[:app_name]
+    node_addr = params[:node_addr]
+    results = HTTP.delete("#{API_SERVER}/node/#{username}/#{app_name}/#{node_addr}")
+
+    redirect "/node/#{username}/#{app_name}/?"
   end
 end

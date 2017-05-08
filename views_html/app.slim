@@ -52,6 +52,7 @@ div.container
         tr
           th Name
           th Description
+          th Delete
       tbody
         -@data&.each do |a|
           tr
@@ -60,4 +61,7 @@ div.container
                 | #{a['app_name']}
             td
               | #{a['app_description']}
-            
+            td
+              button.btn.btn-default.btn-sm type="button"
+                span.glyphicon.glyphicon-trash
+                  | Delete

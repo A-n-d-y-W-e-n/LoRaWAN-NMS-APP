@@ -39,15 +39,15 @@ div.container
               .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr" type="text"
+                input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr(8 HEX digits)" type="text"
               .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey" type="text"
+                input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey(32 HEX digits)" type="text"
               .input-group style="margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-pencil
-                input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey" type="text"
+                input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey(32 HEX digits)" type="text"
             .modal-footer
               button.btn.btn-default type="submit" Create
 
@@ -56,13 +56,15 @@ div.container
       thead
         tr
           th Address
+          th Delete
       tbody
         -@data&.each do |a|
           tr
             td
               | #{a['node_addr']}
             td
-              button.btn.btn-default.btn-sm type="button"
-                span.glyphicon.glyphicon-trash
-                  | Delete
-                
+              form action="/delete_node/#{a['username']}/#{a['app_name']}/#{a['node_addr']}" method="delete"
+                button.btn.btn-default.btn-sm type="submit"
+                  span.glyphicon.glyphicon-trash
+                    | Delete
+                  

@@ -59,6 +59,7 @@ div.container
           th MAC Address
           th IP Address
           th Location
+          th Delete
       tbody
         -@data&.each do |a|
           tr
@@ -71,6 +72,10 @@ div.container
               | #{a['gw_ip']}
             td
               | #{a['gw_loc']}
+            td
+              button.btn.btn-default.btn-sm type="button"
+                span.glyphicon.glyphicon-trash
+                  | Delete
 
   div.container id="map" style="width:1000px;height:600px;background:yellow"
     script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=myMap" 
