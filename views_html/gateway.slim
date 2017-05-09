@@ -9,7 +9,7 @@ div.container-fluid.text-center
         li.active
           a href=""  Gateway
         li
-          a href=""  Application
+          a href="/app"  Application
 
       ul.nav.navbar-nav.navbar-right
         li
@@ -27,7 +27,7 @@ div.container
     | Gateway
   .modal.fade role="dialog" id="myModal"
     .modal-dialog
-      form role="form" action="/create_gw" method="post"
+      form role="form" action="/add_gateway" method="post"
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
@@ -73,7 +73,7 @@ div.container
             td
               | #{a['gw_loc']}
             td
-              form action="/delete_gw/#{a['gw_mac']}" method="post"
+              form action="/delete_gateway/#{a['gw_mac']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete

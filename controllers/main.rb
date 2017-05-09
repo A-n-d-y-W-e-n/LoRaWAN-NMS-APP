@@ -15,11 +15,17 @@ class LORAWAN_NMS_APP < Sinatra::Base
     password = params[:password]
     session[:username] = username
     session[:password] = password
-    results = HTTP.get("#{API_SERVER}/app/#{username}")
-    @data = JSON.parse(results.body)
-    if @data[0]['app_name'] != nil
-      slim :app
+    if username.length > 0
+      results = HTTP.get("#{API_SERVER}/app/#{username}")
+      @data = JSON.parse(results.body)
+      if results.code == 200 && @data.length > 0
+        slim :app
+      else
+        flash[:error] = "kdowjfo"
+        redirect "/user"
+      end
     else
+      flash[:error] = "kdowjfo"
       redirect "/user"
     end
   end
@@ -37,11 +43,11 @@ class LORAWAN_NMS_APP < Sinatra::Base
     end
   end
 
-  get '/gw/?' do
+  get '/gateway/?' do
     results = HTTP.get("#{API_SERVER}/gateway")
     if results.code == 200
       @data = JSON.parse(results.body)
-      slim :gw
+      slim :gateway
     end
   end
 
@@ -63,7 +69,8 @@ class LORAWAN_NMS_APP < Sinatra::Base
     redirect "/app/?username=#{username}"
   end
 
-  post '/create_node/:username/:app_name/?' do
+  # add nodes
+  post '/add_node/:username/:app_name/?' do
     username = params[:username]
     app_name = params[:app_name]
     DevAddr = params[:DevAddr]
@@ -75,6 +82,7 @@ class LORAWAN_NMS_APP < Sinatra::Base
     redirect "/node/#{username}/#{app_name}/?"
   end
 
+  # delete nodes
   post '/delete_node/:username/:app_name/:node_addr/?' do
     username = params[:username]
     app_name = params[:app_name]
@@ -85,23 +93,26 @@ class LORAWAN_NMS_APP < Sinatra::Base
     redirect "/node/#{username}/#{app_name}/?"
   end
 
-  post '/create_gw/?' do
+  # add gateways
+  post '/add_gateway/?' do
     gateway_name = params[:gw_name]
     gateway_mac = params[:gw_mac]
     gateway_ip = params[:gw_ip]
     gateway_loc = params[:gw_loc]
     results = HTTP.post("#{API_SERVER}/gateway/#{gateway_name}/#{gateway_mac}/#{gateway_ip}/#{gateway_loc}")
 
-    redirect "/gw"
+    redirect "/gateway"
   end
 
-  post '/delete_gw/:gw_mac?' do
+  # delete gateways
+  post '/delete_gateway/:gw_mac?' do
     gateway_mac = params[:gw_mac]
     results = HTTP.post("#{API_SERVER}/delete_gateway/#{gateway_mac}")
 
-    redirect "/gw"
+    redirect "/gateway"
   end
 
+  # sign up modal
   post '/create_user/?' do
     new_username = params[:new_username]
     new_user_email = params[:new_user_email]

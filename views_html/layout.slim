@@ -11,11 +11,12 @@ html
     link rel="stylesheet" href="/css/style.css" type="text/css"
 
   body style="background-color:white;"
-  
-    == yield
-        
     / JQuery and Bootstrap JS
     script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
     script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     script src="/js/init.js"
     script src="/js/smooth_scroll.js"
+    
+    section
+      include :flash_bar
+      == yield

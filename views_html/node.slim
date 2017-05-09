@@ -7,7 +7,7 @@ div.container-fluid.text-center
         li
           a href="/"  Home
         li
-          a href="/gw"  Gateway
+          a href="/gateway"  Gateway
         li.active
           a href=""  Application
 
@@ -30,7 +30,7 @@ div.container
       | Node
     .modal.fade role="dialog" id="myModal"
       .modal-dialog
-        form action="/create_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
+        form action="/add_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button" &times;
