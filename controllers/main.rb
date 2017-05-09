@@ -11,15 +11,22 @@ class LORAWAN_NMS_APP < Sinatra::Base
   end
 
   get '/app/?' do
-    username = params[:username]
-    password = params[:password]
-    session[:username] = username
-    session[:password] = password
-    if username.length > 0
-      results = HTTP.get("#{API_SERVER}/app/#{username}")
-      @data = JSON.parse(results.body)
-      if results.code == 200 && @data.length > 0
-        slim :app
+    @username = params[:username]
+    @password = params[:password]
+    # session[:username] = username
+    # session[:password] = password
+    if @username.length > 0 and @password.length > 0
+      results = HTTP.get("#{API_SERVER}/user/#{@username}")
+      @cre = JSON.parse(results.body)
+      if @cre[0]['password']== @password
+        results2 = HTTP.get("#{API_SERVER}/app/#{@username}")
+        @data = JSON.parse(results2.body)
+        if results2.code == 200
+          slim :app
+        else
+          flash[:error] = "kdowjfo"
+          redirect "/user"
+        end
       else
         flash[:error] = "kdowjfo"
         redirect "/user"
@@ -36,12 +43,6 @@ class LORAWAN_NMS_APP < Sinatra::Base
     results = HTTP.get("#{API_SERVER}/node/#{@username}/#{@app_name}")
     @data = JSON.parse(results.body)
     slim :node
-    # if results.body.to_s.length > 2
-    #   @data = JSON.parse(results.body)
-    #   slim :node
-    # else
-    #   redirect "/app/?username=#{username}"
-    # end
   end
 
   get '/gateway/?' do

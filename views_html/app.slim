@@ -13,10 +13,9 @@ div.container-fluid.text-center
 
       ul.nav.navbar-nav.navbar-right
         li
-          -if @data
-            a href="#"
-              span.glyphicon.glyphicon-user style="margin-right:5px;"
-              | Hi, #{@data[0]['username']}
+          a href="#"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, #{@username}
         li
           a href="#"
             span.glyphicon.glyphicon-log-in style="margin-right:5px;"
@@ -29,7 +28,7 @@ div.container
     | Application
   .modal.fade role="dialog" id="myModal"
     .modal-dialog
-      form role="form" action="/create_app/#{@data[0]['username']}" method="post"
+      form role="form" action="/create_app/#{@username}" method="post"
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
