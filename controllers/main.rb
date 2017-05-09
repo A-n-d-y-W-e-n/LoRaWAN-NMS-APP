@@ -31,16 +31,17 @@ class LORAWAN_NMS_APP < Sinatra::Base
   end
 
   get "/node/:username/:app_name/?" do
-    username = params[:username]
-    app_name = params[:app_name]
-    results = HTTP.get("#{API_SERVER}/node/#{username}/#{app_name}")
-
-    if results.body.to_s.length > 2
-      @data = JSON.parse(results.body)
-      slim :node
-    else
-      redirect "/app/?username=#{username}"
-    end
+    @username = params[:username]
+    @app_name = params[:app_name]
+    results = HTTP.get("#{API_SERVER}/node/#{@username}/#{@app_name}")
+    @data = JSON.parse(results.body)
+    slim :node
+    # if results.body.to_s.length > 2
+    #   @data = JSON.parse(results.body)
+    #   slim :node
+    # else
+    #   redirect "/app/?username=#{username}"
+    # end
   end
 
   get '/gateway/?' do

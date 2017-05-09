@@ -13,43 +13,41 @@ div.container-fluid.text-center
 
       ul.nav.navbar-nav.navbar-right
         li
-          -if @data
-            a href="#"
-              span.glyphicon.glyphicon-user style="margin-right:5px;"
-              | Hi, #{@data[0]['username']}
+          a href="#"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, #{@username}
         li
           a href="#"
             span.glyphicon.glyphicon-log-in style="margin-right:5px;"
             | Logout
 
 div.container
-  -if @data
-    h2 #{@data[0]['app_name']}
-    a.btn.btn-primary.box-shadow1 role="button" style="margin-top:5px;margin-bottom:5px;" data-toggle="modal" data-target="#myModal"
-      span.glyphicon.glyphicon-plus
-      | Node
-    .modal.fade role="dialog" id="myModal"
-      .modal-dialog
-        form action="/add_node/#{@data[0]['username']}/#{@data[0]['app_name']}" method="post"
-          .modal-content
-            .modal-header
-              button.close data-dismiss="modal" type="button" &times;
-              h4.modal-title Adding a New Node into LoRaWAN
-            .modal-body
-              .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
-                span.input-group-addon
-                  i.glyphicon.glyphicon-pencil
-                input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr (8 HEX digits)" type="text"
-              .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
-                span.input-group-addon
-                  i.glyphicon.glyphicon-pencil
-                input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey (32 HEX digits)" type="text"
-              .input-group style="margin-left:20px;margin-right:20px;"
-                span.input-group-addon
-                  i.glyphicon.glyphicon-pencil
-                input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey (32 HEX digits)" type="text"
-            .modal-footer
-              button.btn.btn-default type="submit" Add
+  h2 #{@app_name}
+  a.btn.btn-primary.box-shadow1 role="button" style="margin-top:5px;margin-bottom:5px;" data-toggle="modal" data-target="#myModal"
+    span.glyphicon.glyphicon-plus
+    | Node
+  .modal.fade role="dialog" id="myModal"
+    .modal-dialog
+      form action="/add_node/#{@username}/#{@app_name}" method="post"
+        .modal-content
+          .modal-header
+            button.close data-dismiss="modal" type="button" &times;
+            h4.modal-title Adding a New Node into LoRaWAN
+          .modal-body
+            .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr (8 HEX digits)" type="text"
+            .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey (32 HEX digits)" type="text"
+            .input-group style="margin-left:20px;margin-right:20px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey (32 HEX digits)" type="text"
+          .modal-footer
+            button.btn.btn-default type="submit" Add
 
   div.table-responsive
     table.table.table-hover
