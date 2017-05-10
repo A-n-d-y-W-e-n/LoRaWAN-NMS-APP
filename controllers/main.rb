@@ -2,7 +2,9 @@
 API_SERVER = 'http://localhost:9292'
 
 class LORAWAN_NMS_APP < Sinatra::Base
-  get '/' do
+  
+  get '/?' do
+    @not_found = params[:not_found]
     slim :main
   end
 
@@ -18,22 +20,19 @@ class LORAWAN_NMS_APP < Sinatra::Base
     if @username.length > 0 and @password.length > 0
       results = HTTP.get("#{API_SERVER}/user/#{@username}")
       @cre = JSON.parse(results.body)
-      if @cre[0]['password']== @password
+      if @cre.length > 0 and @cre[0]['password'] == @password
         results2 = HTTP.get("#{API_SERVER}/app/#{@username}")
         @data = JSON.parse(results2.body)
         if results2.code == 200
           slim :app
         else
-          flash[:error] = "kdowjfo"
-          redirect "/user"
+          redirect "/?not_found=1#login"
         end
       else
-        flash[:error] = "kdowjfo"
-        redirect "/user"
+        redirect "/?not_found=1#login"
       end
     else
-      flash[:error] = "kdowjfo"
-      redirect "/user"
+      redirect "/?not_found=1#login"
     end
   end
 

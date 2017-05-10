@@ -59,3 +59,8 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
                 input.form-control id="new_password" name="new_password" placeholder="Password" type="text"
             .modal-footer
               button.btn.btn-default type="submit" Sign Up
+    - if @not_found
+      .alert.alert-danger.alert-dismissable.fade.in style="margin-top:50px;width:50%;margin-left:25%;"
+        a.close aria-label="close" data-dismiss="alert" href="#" &times;
+        strong ERROR! &nbsp; &nbsp;
+        | Please make sure you enter the right username and password!

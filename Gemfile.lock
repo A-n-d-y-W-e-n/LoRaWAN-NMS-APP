@@ -70,6 +70,8 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -97,6 +99,7 @@ DEPENDENCIES
   rack-flash3
   roar
   sinatra
+  sinatra-flash
   slim
 
 BUNDLED WITH

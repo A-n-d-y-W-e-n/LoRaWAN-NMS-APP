@@ -17,6 +17,11 @@ html
     script src="/js/init.js"
     script src="/js/smooth_scroll.js"
     
-    section
-      include :flash_bar
-      == yield
+    / == yield
+      / - if flash[:error]
+      /     div class="alert alert-danger"
+      /       = flash[:error]
+      / == yield
+    / include :flash_bar
+    == yield
+    include :flash_bar
