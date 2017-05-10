@@ -9,7 +9,7 @@ div.container-fluid.text-center
         li.active
           a href=""  Gateway
         li
-          a href="/app"  Application
+          a href="/app/?username=#{@username}&password=#{@password}"  Application
 
       ul.nav.navbar-nav.navbar-right
         li
@@ -37,18 +37,27 @@ div.container
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_name" name="gw_name" placeholder="Gateway Name" type="text"
+              
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_mac" name="gw_mac" placeholder="Gateway MAC Address" type="text"
+              
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_ip" name="gw_ip" placeholder="Gateway IP Address" type="text"
-            .input-group style="margin-left:20px;margin-right:20px;"
+              
+            .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_loc" name="gw_loc" placeholder="Gateway Location" type="text"
+            
+            .input-group style="margin-left:20px;margin-right:20px;"
+              span.input-group-addon
+                i.glyphicon.glyphicon-pencil
+              input.form-control id="gw_username" name="gw_username" placeholder="Gateway Owner" type="text"
+
           .modal-footer
             button.btn.btn-default type="submit" Add
   div.table-responsive
@@ -59,6 +68,7 @@ div.container
           th MAC Address
           th IP Address
           th Location
+          th Owner
           th Delete
       tbody
         -@data&.each do |a|
@@ -73,7 +83,9 @@ div.container
             td
               | #{a['gw_loc']}
             td
-              form action="/delete_gateway/#{a['gw_mac']}" method="post"
+              | #{a['gw_username']}
+            td
+              form action="/delete_gateway/?gw_mac=#{a['gw_mac']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete

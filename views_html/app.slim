@@ -9,7 +9,7 @@ div.container-fluid.text-center
         li
           a href="/gateway" Gateway
         li.active
-          a href="" Application
+          a href="/app/?username=#{@username}&password=#{@password}" Application
 
       ul.nav.navbar-nav.navbar-right
         li
@@ -28,7 +28,7 @@ div.container
     | Application
   .modal.fade role="dialog" id="myModal"
     .modal-dialog
-      form role="form" action="/create_app/#{@username}" method="post"
+      form role="form" action="/create_app/?username=#{@username}" method="post"
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
@@ -56,12 +56,12 @@ div.container
         -@data&.each do |a|
           tr
             td
-              a href="/node/#{a['username']}/#{a['app_name']}"
+              a href="/node/?username=#{@username}&app_name=#{a['app_name']}"
                 | #{a['app_name']}
             td
               | #{a['app_description']}
             td
-              form action="/delete_app/#{a['username']}/#{a['app_name']}" method="post"
+              form action="/delete_app/#{@username}/#{a['app_name']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete
