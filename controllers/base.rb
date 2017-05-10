@@ -3,13 +3,17 @@
 # configure based on environment
 class LORAWAN_NMS_APP < Sinatra::Base
   # extend Econfig::Shortcut
-  enable :sessions
+  # set :session_secret, 'secret'
+  # enable :sessions
   # configure do
   #   Econfig.env = settings.environment.to_s
   #   Econfig.root = File.expand_path('..', settings.root)
   # end
-  
-  use Rack::Session::Cookie
+
+  # use Rack::Session::Cookie
+  use Rack::Session::Cookie, :key => 'rack.session',
+                             :path => '/',
+                             :secret => 'your_secret'
   use Rack::Flash
 
   set :views, File.expand_path('../../views_html', __FILE__)
