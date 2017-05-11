@@ -134,7 +134,7 @@ class LORAWAN_NMS_APP < Sinatra::Base
 
   # delete gateways
   post '/delete_gateway/?' do
-    gateway_mac = params[:gw_mac]
+    gateway_mac = params[:gateway_mac]
     results = HTTP.post("#{API_SERVER}/delete_gateway/?gateway_mac=#{gateway_mac}")
 
     redirect "/gateway"
@@ -145,7 +145,7 @@ class LORAWAN_NMS_APP < Sinatra::Base
     new_username = params[:new_username]
     new_user_email = params[:new_user_email]
     new_password = params[:new_password]
-    results = HTTP.post("#{API_SERVER}/user/#{new_username}/#{new_user_email}/#{new_password}")
+    results = HTTP.post("#{API_SERVER}/create_user/?username=#{new_username}&user_email=#{new_user_email}&password=#{new_password}")
 
     redirect "/#login"
   end

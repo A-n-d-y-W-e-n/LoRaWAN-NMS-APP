@@ -75,18 +75,18 @@ div.container
           tr
             td
               a
-                | #{a['gw_name']}
+                | #{a['gateway_name']}
             td
-              | #{a['gw_mac']}
+              | #{a['gateway_mac']}
             td
-              | #{a['gw_ip']}
+              | #{a['gateway_ip']}
             td
-              | #{a['gw_loc']}
+              | #{a['gateway_loc']}
             td
-              | #{a['gw_username']}
+              | #{a['username']}
             td
-              -if a['gw_username']==@username
-                form action="/delete_gateway/?gw_mac=#{a['gw_mac']}" method="post"
+              -if a['username']==@username
+                form action="/delete_gateway/?gateway_mac=#{a['gateway_mac']}" method="post"
                   button.btn.btn-default.btn-sm type="submit"
                     span.glyphicon.glyphicon-trash
                       | Delete
