@@ -85,10 +85,11 @@ div.container
             td
               | #{a['gw_username']}
             td
-              form action="/delete_gateway/?gw_mac=#{a['gw_mac']}" method="post"
-                button.btn.btn-default.btn-sm type="submit"
-                  span.glyphicon.glyphicon-trash
-                    | Delete
+              -if a['gw_username']==@username
+                form action="/delete_gateway/?gw_mac=#{a['gw_mac']}" method="post"
+                  button.btn.btn-default.btn-sm type="submit"
+                    span.glyphicon.glyphicon-trash
+                      | Delete
 
   div.container id="map" style="width:1000px;height:600px;background:yellow"
     script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=myMap" 
