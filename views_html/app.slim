@@ -61,7 +61,7 @@ div.container
             td
               | #{a['app_description']}
             td
-              form action="/delete_app/#{@username}/#{a['app_name']}" method="post"
+              form action="/delete_app/?username=#{@username}&app_name=#{a['app_name']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete

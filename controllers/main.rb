@@ -9,7 +9,7 @@ class LORAWAN_NMS_APP < Sinatra::Base
   end
 
   get '/app/?' do
-    @username,session[:username] = params[:username]
+    @username = params[:username]
     @password = params[:password]
     session[:username] = @username
     session[:password] = @password
@@ -36,8 +36,8 @@ class LORAWAN_NMS_APP < Sinatra::Base
   get "/node/?" do
     @username = session[:username]
     @password = session[:password]
-
     @app_name = params[:app_name]
+
     results = HTTP.get("#{API_SERVER}/node/#{@username}/#{@app_name}")
     @data = JSON.parse(results.body)
     slim :node
@@ -56,60 +56,62 @@ class LORAWAN_NMS_APP < Sinatra::Base
   post '/create_app/?' do
     @username = session[:username]
     @password = session[:password]
-
     app_name = params[:app_name]
     app_description = params[:app_description]
+
     results = HTTP.post("#{API_SERVER}/app/#{@username}/#{app_name}/#{app_description}")
 
     redirect "/app/?username=#{@username}&password=#{@password}"
   end
 
-  post '/delete_app/:username/:app_name/?' do
+  post '/delete_app/?' do
     @username = session[:username]
     @password = session[:password]
     app_name = params[:app_name]
-    app_description = params[:app_description]
-    results = HTTP.post("#{API_SERVER}/delete_app/#{username}/#{app_name}")
 
-    redirect "/app/?username=#{@username}"
+    results = HTTP.post("#{API_SERVER}/delete_app/#{@username}/#{app_name}")
+
+    redirect "/app/?username=#{@username}&password=#{@password}"
   end
 
   # add nodes
-  post '/add_node/:username/:app_name/?' do
+  post '/add_node/?' do
     @username = session[:username]
     @password = session[:password]
-
     app_name = params[:app_name]
     DevAddr = params[:DevAddr]
     NwkSKey = params[:NwkSKey]
     AppSKey = params[:AppSKey]
+
     results = HTTP.post("#{API_SERVER}/node/#{@username}/#{app_name}/#{DevAddr}")
     results2 = HTTP.post("#{API_SERVER}/node/abp/#{DevAddr}/#{NwkSKey}/#{AppSKey}")
 
-    redirect "/node/#{username}/#{app_name}/?"
+    redirect "/node/?username=#{@username}&app_name=#{app_name}"
   end
 
   # delete nodes
-  post '/delete_node/:username/:app_name/:node_addr/?' do
+  post '/delete_node/?' do
     @username = session[:username]
     @password = session[:password]
-
     app_name = params[:app_name]
     node_addr = params[:node_addr]
+
     results = HTTP.post("#{API_SERVER}/delete_node/#{@username}/#{app_name}/#{node_addr}")
     results = HTTP.post("#{API_SERVER}/delete_node/abp/#{node_addr}")
 
-    redirect "/node/#{@username}/#{app_name}/?"
+    redirect "/node/?username=#{@username}&app_name=#{app_name}"
   end
 
   # add gateways
   post '/add_gateway/?' do
+    @username = session[:username]
+    @password = session[:password]
     gateway_name = params[:gw_name]
     gateway_mac = params[:gw_mac]
     gateway_ip = params[:gw_ip]
     gateway_loc = params[:gw_loc]
-    gateway_username = params[:gw_username]
-    results = HTTP.post("#{API_SERVER}/add_gateway/?gateway_name=#{gateway_name}&gateway_mac=#{gateway_mac}&gateway_ip=#{gateway_ip}&gateway_loc=#{gateway_loc}&gateway_username=#{gateway_username}")
+
+    results = HTTP.post("#{API_SERVER}/add_gateway/?gateway_name=#{gateway_name}&gateway_mac=#{gateway_mac}&gateway_ip=#{gateway_ip}&gateway_loc=#{gateway_loc}&gateway_username=#{@username}")
 
     redirect "/gateway"
   end

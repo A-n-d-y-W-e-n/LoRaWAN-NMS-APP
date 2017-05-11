@@ -2,15 +2,7 @@
 
 # configure based on environment
 class LORAWAN_NMS_APP < Sinatra::Base
-  # extend Econfig::Shortcut
-  # set :session_secret, 'secret'
-  # enable :sessions
-  # configure do
-  #   Econfig.env = settings.environment.to_s
-  #   Econfig.root = File.expand_path('..', settings.root)
-  # end
 
-  # use Rack::Session::Cookie
   use Rack::Session::Cookie, :key => 'rack.session',
                              :path => '/',
                              :secret => 'your_secret'
@@ -23,7 +15,4 @@ class LORAWAN_NMS_APP < Sinatra::Base
     content_type 'text/html'
   end
 
-  # def self.api_ver_url
-  #    [config.API_SERVER, config.API_VER].join('/')
-  # end
 end

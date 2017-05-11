@@ -7,7 +7,7 @@ div.container-fluid.text-center
         / li
         /   a href="/"  Home
         li.active
-          a href=""  Gateway
+          a href="/gateway"  Gateway
         li
           a href="/app/?username=#{@username}&password=#{@password}"  Application
 
@@ -53,10 +53,10 @@ div.container
                 i.glyphicon.glyphicon-pencil
               input.form-control id="gw_loc" name="gw_loc" placeholder="Gateway Location" type="text"
             
-            .input-group style="margin-left:20px;margin-right:20px;"
-              span.input-group-addon
-                i.glyphicon.glyphicon-pencil
-              input.form-control id="gw_username" name="gw_username" placeholder="Gateway Owner" type="text"
+            / .input-group style="margin-left:20px;margin-right:20px;"
+            /   span.input-group-addon
+            /     i.glyphicon.glyphicon-pencil
+            /   input.form-control id="gw_username" name="gw_username" placeholder="Gateway Owner" type="text"
 
           .modal-footer
             button.btn.btn-default type="submit" Add
