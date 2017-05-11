@@ -1,0 +1,37 @@
+div.container-fluid.text-center
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        a.navbar-brand  LoRaWAN Management System
+      ul.nav.navbar-nav
+        / li
+        /   a href="/" Home
+        li
+          a href="/gateway" Gateway
+        li.active
+          a href="/app/?username=#{@username}&password=#{@password}" Application
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          a href="/user"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, #{@username}
+        li
+          a href="/logout"
+            span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+            | Logout
+
+div.container
+  div.table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th Username
+          th E-mail Address
+      tbody
+        -@data&.each do |a|
+          tr
+            td
+              | #{@username}
+            td
+              | #{a['user_email']}

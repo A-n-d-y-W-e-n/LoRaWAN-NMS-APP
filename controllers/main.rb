@@ -8,6 +8,16 @@ class LORAWAN_NMS_APP < Sinatra::Base
     slim :main
   end
 
+  get '/user/?' do
+    @username = session[:username]
+    @password = session[:password]
+
+    results = HTTP.get("#{API_SERVER}/user/?username=#{@username}")
+    @data = JSON.parse(results.body)
+
+    slim :user
+  end
+
   get '/logout' do
     session.clear
     redirect "/"
