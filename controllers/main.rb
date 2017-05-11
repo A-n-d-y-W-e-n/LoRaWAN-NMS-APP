@@ -8,6 +8,11 @@ class LORAWAN_NMS_APP < Sinatra::Base
     slim :main
   end
 
+  get '/logout' do
+    session.clear
+    redirect "/"
+  end
+
   get '/app/?' do
     @username = params[:username]
     @password = params[:password]
