@@ -28,7 +28,7 @@ div.container
     | Node
   .modal.fade role="dialog" id="myModal"
     .modal-dialog
-      form action="/add_node/?username=#{@username}&app_name=#{@app_name}" method="post"
+      form action="/add_node/?app_name=#{@app_name}" method="post"
         .modal-content
           .modal-header
             button.close data-dismiss="modal" type="button" &times;
@@ -53,13 +53,19 @@ div.container
     table.table.table-hover
       thead
         tr
-          th Address
+          th DevAddr
+          th NwkSKey
+          th AppSKey
           th Delete
       tbody
         -@data&.each do |a|
           tr
             td
               | #{a['node_addr']}
+            td
+              | #{a['node_nwkskey']}
+            td
+              | #{a['node_appskey']}
             td
               form action="/delete_node/?app_name=#{a['app_name']}&node_addr=#{a['node_addr']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"

@@ -56,12 +56,12 @@ div.container
         -@data&.each do |a|
           tr
             td
-              a href="/node/?username=#{@username}&app_name=#{a['app_name']}"
+              a href="/node/?app_name=#{a['app_name']}"
                 | #{a['app_name']}
             td
               | #{a['app_description']}
             td
-              form action="/delete_app/?username=#{@username}&app_name=#{a['app_name']}" method="post"
+              form action="/delete_app/?app_name=#{a['app_name']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
                   span.glyphicon.glyphicon-trash
                     | Delete
