@@ -4,13 +4,12 @@ div.container-fluid.text-center
       .navbar-header
         a.navbar-brand  LoRaWAN Management System
       ul.nav.navbar-nav
-        / li
-        /   a href="/"  Home
         li.active
           a href="/gateway"  Gateway
         li
           a href="/app/?username=#{@username}&password=#{@password}"  Application
-
+        li
+          a href="/mqtt_broker"  MQTT Broker Information
       ul.nav.navbar-nav.navbar-right
         li
           a href="/user"

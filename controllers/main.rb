@@ -8,6 +8,12 @@ class LORAWAN_NMS_APP < Sinatra::Base
     slim :main
   end
 
+  get '/mqtt_broker' do
+    @username = session[:username]
+    @password = session[:password]
+    slim :mqtt_broker
+  end
+
   get '/user/?' do
     @username = session[:username]
     @password = session[:password]

@@ -8,10 +8,10 @@ div.container-fluid.text-center
           a href="/gateway" Gateway
         li
           a href="/app/?username=#{@username}&password=#{@password}" Application
-        li
+        li.active
           a href="/mqtt_broker"  MQTT Broker Information
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li
           a href="/user"
             span.glyphicon.glyphicon-user style="margin-right:5px;"
             | Hi, #{@username}
@@ -21,17 +21,25 @@ div.container-fluid.text-center
             | Logout
 
 div.container
-  h2 User Information
+  h2 MQTT Broker Information
   div.table-responsive
     table.table.table-hover
       thead
         tr
-          th Username
-          th E-mail Address
+          th Broker Address
+          th Broker Port
+          th User Name
+          th Password
+          th Topic Format
       tbody
-        -@data&.each do |a|
-          tr
-            td
-              | #{@username}
-            td
-              | #{a['user_email']}
+        tr
+          td
+            | 104.199.215.165
+          td
+            | 1883
+          td
+            | admin
+          td
+            | admin
+          td
+            | {username}/{application name}/{LoRa node DevAddr}

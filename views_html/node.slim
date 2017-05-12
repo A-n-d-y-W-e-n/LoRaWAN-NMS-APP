@@ -4,13 +4,12 @@ div.container-fluid.text-center
       .navbar-header
         a.navbar-brand  LoRaWAN Management System
       ul.nav.navbar-nav
-        / li
-        /   a href="/"  Home
         li
           a href="/gateway"  Gateway
         li.active
           a href="/app/?username=#{@username}&password=#{@password}"  Application
-
+        li
+          a href="/mqtt_broker"  MQTT Broker Information
       ul.nav.navbar-nav.navbar-right
         li
           a href="/user"
@@ -56,6 +55,7 @@ div.container
           th DevAddr
           th NwkSKey
           th AppSKey
+          th Topic
           th Delete
       tbody
         -@data&.each do |a|
@@ -66,6 +66,8 @@ div.container
               | #{a['node_nwkskey']}
             td
               | #{a['node_appskey']}
+            td
+              | #{@username}/#{@app_name}/#{a['node_addr']}
             td
               form action="/delete_node/?app_name=#{a['app_name']}&node_addr=#{a['node_addr']}" method="post"
                 button.btn.btn-default.btn-sm type="submit"
