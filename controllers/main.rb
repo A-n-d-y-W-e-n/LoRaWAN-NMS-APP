@@ -30,10 +30,10 @@ class LORAWAN_NMS_APP < Sinatra::Base
     session[:password] = @password
 
     if @username.length > 0 and @password.length > 0
-      results = HTTP.get("#{API_SERVER}/user/?username=#{@username}")
+      results = HTTP.get("#{API_SERVER}/user/?username=#{@username.gsub(/( )/, '+')}")
       @cre = JSON.parse(results.body)
       if @cre.length > 0 and @cre[0]['password'] == @password
-        results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username}")
+        results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username.gsub(/( )/, '+')}")
         @data = JSON.parse(results2.body)
         if results2.code == 200
           slim :app
@@ -72,8 +72,8 @@ class LORAWAN_NMS_APP < Sinatra::Base
   post '/create_app/?' do
     @username = session[:username]
     @password = session[:password]
-    app_name = params[:app_name]
-    app_description = params[:app_description]
+    app_name = params[:app_name].gsub(/( )/, '+')
+    app_description = params[:app_description].gsub(/( )/, '+')
 
     results = HTTP.post("#{API_SERVER}/create_app/?username=#{@username}&app_name=#{app_name}&app_description=#{app_description}")
 
@@ -121,11 +121,10 @@ class LORAWAN_NMS_APP < Sinatra::Base
   # add gateways
   post '/add_gateway/?' do
     @username = session[:username]
-    @password = session[:password]
-    gateway_name = params[:gw_name]
-    gateway_mac = params[:gw_mac]
+    gateway_name = params[:gw_name].gsub(/( )/, '+')
+    gateway_mac = params[:gw_mac].gsub(/:/, '')
     gateway_ip = params[:gw_ip]
-    gateway_loc = params[:gw_loc]
+    gateway_loc = params[:gw_loc].gsub(/( )/, '+')
 
     results = HTTP.post("#{API_SERVER}/add_gateway/?gateway_name=#{gateway_name}&gateway_mac=#{gateway_mac}&gateway_ip=#{gateway_ip}&gateway_loc=#{gateway_loc}&gateway_username=#{@username}")
 
@@ -145,9 +144,12 @@ class LORAWAN_NMS_APP < Sinatra::Base
     new_username = params[:new_username]
     new_user_email = params[:new_user_email]
     new_password = params[:new_password]
-    results = HTTP.post("#{API_SERVER}/create_user/?username=#{new_username}&user_email=#{new_user_email}&password=#{new_password}")
-
-    redirect "/#login"
+    if new_username.length > 0 and new_user_email.length > 0 and new_password.length > 0 and !new_username.strip.include?" " and !new_user_email.strip.include?" " and !new_password.strip.include? " "
+      results = HTTP.post("#{API_SERVER}/create_user/?username=#{new_username}&user_email=#{new_user_email}&password=#{new_password}")
+      redirect "/#login"
+    else
+      redirect "/?not_found=2#login"
+    end
   end
 
 end

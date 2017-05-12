@@ -62,5 +62,9 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
     - if @not_found
       .alert.alert-danger.alert-dismissable.fade.in style="margin-top:50px;width:50%;margin-left:25%;"
         a.close aria-label="close" data-dismiss="alert" href="#" &times;
-        strong ERROR! &nbsp; &nbsp;
-        | Please make sure you enter the right username and password!
+        - if @not_found =='1'
+          strong Login Failed! &nbsp; &nbsp;
+          | Please make sure you enter the right username and password!
+        - elsif @not_found =='2'
+          strong Sign Up Failed! &nbsp; &nbsp;
+          | Please make sure you submit the right information! (no whitespace can be included)

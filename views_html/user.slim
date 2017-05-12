@@ -8,11 +8,11 @@ div.container-fluid.text-center
         /   a href="/" Home
         li
           a href="/gateway" Gateway
-        li.active
+        li
           a href="/app/?username=#{@username}&password=#{@password}" Application
 
       ul.nav.navbar-nav.navbar-right
-        li
+        li.active
           a href="/user"
             span.glyphicon.glyphicon-user style="margin-right:5px;"
             | Hi, #{@username}
@@ -22,6 +22,7 @@ div.container-fluid.text-center
             | Logout
 
 div.container
+  h2 User Information
   div.table-responsive
     table.table.table-hover
       thead
