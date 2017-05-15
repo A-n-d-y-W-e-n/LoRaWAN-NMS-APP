@@ -104,10 +104,10 @@ class LORAWAN_NMS_APP < Sinatra::Base
     DevAddr = params[:DevAddr]
     NwkSKey = params[:NwkSKey]
     AppSKey = params[:AppSKey]
-
-    results = HTTP.post("#{API_SERVER}/add_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{DevAddr}&node_nwkskey=#{NwkSKey}&node_appskey=#{AppSKey}")
     results2 = HTTP.post("#{API_SERVER}/add_node/abp/?DevAddr=#{DevAddr}&NwkSKey=#{NwkSKey}&AppSKey=#{AppSKey}")
-
+    if results2.code == 200
+      results = HTTP.post("#{API_SERVER}/add_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{DevAddr}&node_nwkskey=#{NwkSKey}&node_appskey=#{AppSKey}")
+    end
     redirect "/node/?username=#{@username}&app_name=#{app_name}"
   end
 
