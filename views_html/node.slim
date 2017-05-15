@@ -36,15 +36,15 @@ div.container
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="DevAddr" name="DevAddr" placeholder="DevAddr (8 HEX digits)" type="text"
+              input.form-control required="" pattern=".{8}" title="8 HEX digits required" id="DevAddr" name="DevAddr" placeholder="DevAddr (8 HEX digits)" type="text"
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="NwkSKey" name="NwkSKey" placeholder="NwkSKey (32 HEX digits)" type="text"
+              input.form-control required="" pattern=".{32}" title="32 HEX digits required" id="NwkSKey" name="NwkSKey" placeholder="NwkSKey (32 HEX digits)" type="text"
             .input-group style="margin-left:20px;margin-right:20px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="AppSKey" name="AppSKey" placeholder="AppSKey (32 HEX digits)" type="text"
+              input.form-control required="" pattern=".{32}" title="32 HEX digits required" id="AppSKey" name="AppSKey" placeholder="AppSKey (32 HEX digits)" type="text"
           .modal-footer
             button.btn.btn-default type="submit" Add
 

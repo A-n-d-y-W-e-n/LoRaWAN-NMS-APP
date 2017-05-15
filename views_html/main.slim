@@ -24,11 +24,13 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
       .input-group style="margin-top:20px;margin-bottom:20px;"
         span.input-group-addon
           i.glyphicon.glyphicon-user
-        input.form-control id="username" name="username" placeholder="Username" type="text"
+        input.form-control required="" pattern=".{3,}" title="3 characters minimum" id="username" name="username" placeholder="Username" type="text"
+        
       .input-group style="margin-top:20px;margin-bottom:30px;"
         span.input-group-addon
           i.glyphicon.glyphicon-lock
-        input.form-control id="password" name="password" placeholder="Password" type="password"
+        input.form-control required="" pattern=".{6,}" title="6 characters minimum" id="password" name="password" placeholder="Password" type="password"
+        
       button.btn.btn-default type="submit"
         span.glyphicon.glyphicon-log-in style="margin-right:5px;"
         | Login
@@ -46,17 +48,17 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
               .input-group style="margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-user
-                input.form-control id="new_username" name="new_username" placeholder="Username" type="text"
+                input.form-control required="" pattern=".{3,}" title="3 characters minimum" id="new_username" name="new_username" placeholder="Username" type="text"
                 
               .input-group style="margin-top:5px;margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-envelope
-                input.form-control id="new_user_email" name="new_user_email" placeholder="Email" type="text"
+                input.form-control required="" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" title="Invalid E-mail Address" id="new_user_email" name="new_user_email" placeholder="Email" type="text"
 
               .input-group style="margin-top:5px;margin-bottom:5px;margin-left:20px;margin-right:20px;"
                 span.input-group-addon
                   i.glyphicon.glyphicon-lock
-                input.form-control id="new_password" name="new_password" placeholder="Password" type="text"
+                input.form-control required="" pattern=".{6,}" title="6 characters minimum" id="new_password" name="new_password" placeholder="Password" type="text"
             .modal-footer
               button.btn.btn-default type="submit" Sign Up
     - if @not_found

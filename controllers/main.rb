@@ -101,12 +101,15 @@ class LORAWAN_NMS_APP < Sinatra::Base
     @username = session[:username]
     @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
-    DevAddr = params[:DevAddr]
-    NwkSKey = params[:NwkSKey]
-    AppSKey = params[:AppSKey]
-    results2 = HTTP.post("#{API_SERVER}/add_node/abp/?DevAddr=#{DevAddr}&NwkSKey=#{NwkSKey}&AppSKey=#{AppSKey}")
-    if results2.code == 200
-      results = HTTP.post("#{API_SERVER}/add_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{DevAddr}&node_nwkskey=#{NwkSKey}&node_appskey=#{AppSKey}")
+    devaddr = params[:DevAddr]
+    nwkskey = params[:NwkSKey]
+    appskey = params[:AppSKey]
+    if devaddr.length == 8 and nwkskey.length == 32 and appskey.length == 32
+      results2 = HTTP.post("#{API_SERVER}/add_node/abp/?DevAddr=#{devaddr}&NwkSKey=#{nwkskey}&AppSKey=#{appskey}")
+      if results2.code == 200
+        results = HTTP.post("#{API_SERVER}/add_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{devaddr}&node_nwkskey=#{nwksky}&node_appskey=#{appskey}")
+      end
+      redirect "/node/?username=#{@username}&app_name=#{app_name}"
     end
     redirect "/node/?username=#{@username}&app_name=#{app_name}"
   end

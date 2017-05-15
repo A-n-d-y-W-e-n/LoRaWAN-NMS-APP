@@ -35,22 +35,22 @@ div.container
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="gw_name" name="gw_name" placeholder="Gateway Name" type="text"
+              input.form-control required="" id="gw_name" name="gw_name" placeholder="Gateway Name" type="text"
               
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="gw_mac" name="gw_mac" placeholder="Gateway MAC Address ( XX:XX:XX:XX:XX:XX )" type="text"
+              input.form-control required="" pattern=".{12}" title="12 HEX digits required" id="gw_mac" name="gw_mac" placeholder="Gateway MAC Address (12 HEX digits)" type="text"
               
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="gw_ip" name="gw_ip" placeholder="Gateway Public IP Address ( XXX.XXX.XXX.XXX )" type="text"
+              input.form-control id="gw_ip" required="" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" title="Invalid IP Address" name="gw_ip" placeholder="Gateway Public IP Address ( XXX.XXX.XXX.XXX )" type="text"
               
             .input-group style="margin-left:20px;margin-right:20px;margin-bottom:10px;"
               span.input-group-addon
                 i.glyphicon.glyphicon-pencil
-              input.form-control id="gw_loc" name="gw_loc" placeholder="Gateway Location (±XX.XXXXXX, ±XXX.XXXXXX)" type="text"
+              input.form-control id="gw_loc" required=""  name="gw_loc" placeholder="Gateway Location (±XX.XXXXXX, ±XXX.XXXXXX)" type="text"
             
           .modal-footer
             button.btn.btn-default type="submit" Add
