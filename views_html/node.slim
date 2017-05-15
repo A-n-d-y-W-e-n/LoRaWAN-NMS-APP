@@ -61,7 +61,8 @@ div.container
         -@data&.each do |a|
           tr
             td
-              | #{a['node_addr']}
+              a href="/node_data/?app_name=#{@app_name}&node_addr=#{a['node_addr']}"
+                | #{a['node_addr']}
             td
               | #{a['node_nwkskey']}
             td

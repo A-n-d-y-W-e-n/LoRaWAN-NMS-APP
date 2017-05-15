@@ -91,8 +91,11 @@ class LORAWAN_NMS_APP < Sinatra::Base
     @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
 
-    results = HTTP.post("#{API_SERVER}/delete_app/?username=#{@username}&app_name=#{app_name}")
-
+    results = HTTP.get("#{API_SERVER}/node/?username=#{@username}&app_name=#{app_name}")
+    @data = JSON.parse(results.body)
+    if @data.length == 2
+      results2 = HTTP.post("#{API_SERVER}/delete_app/?username=#{@username}&app_name=#{app_name}")
+    end
     redirect "/app/?username=#{@username}&password=#{@password}"
   end
 
@@ -159,6 +162,19 @@ class LORAWAN_NMS_APP < Sinatra::Base
     else
       redirect "/?not_found=2#login"
     end
+  end
+
+  # get the node data
+  get '/node_data/?' do
+    @username = session[:username]
+    @password = session[:password]
+    @app_name = params[:app_name]
+    @node_addr = params[:node_addr]
+
+    results = HTTP.get("#{API_SERVER}/node_data/?node_addr=#{@node_addr}")
+    @data = JSON.parse(results.body)
+
+    slim :node_data
   end
 
 end

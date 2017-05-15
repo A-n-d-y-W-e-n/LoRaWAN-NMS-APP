@@ -1,0 +1,58 @@
+div.container-fluid.text-center
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        a.navbar-brand  LoRaWAN Management System
+      ul.nav.navbar-nav
+        li
+          a href="/gateway"  Gateway
+        li.active
+          a href="/app/?username=#{@username}&password=#{@password}"  Application
+        li
+          a href="/mqtt_broker"  MQTT Broker Information
+      ul.nav.navbar-nav.navbar-right
+        li
+          a href="/user"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, #{@username}
+        li
+          a href="/logout"
+            span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+            | Logout
+            
+div.container
+  h2
+    a href="/node/?app_name=#{@app_name}"
+      span.glyphicon.glyphicon-menu-left style="margin-right:5px;"
+      | Back To List
+    / | &nbsp; / Node Data
+  h3 Last Data Received of The Node (DevAddr = #{@node_addr})
+  
+  div.table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th Channel
+          th SF
+          th Time (GMT+0)
+          th Gateway IP
+          th RSSI
+          th SNR
+          th Data
+      tbody
+        -@data&.each do |a|
+          tr
+            td
+              | #{a['channel']}
+            td
+              | #{a['sf']}
+            td
+              | #{a['time']}
+            td
+              | #{a['gwip']}
+            td
+              | #{a['rssi']}
+            td
+              | #{a['snr']}
+            td
+              | #{a['data']}
