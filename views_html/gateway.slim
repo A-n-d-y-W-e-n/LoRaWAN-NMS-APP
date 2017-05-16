@@ -19,6 +19,18 @@ div.container-fluid.text-center
           a href="/logout"
             span.glyphicon.glyphicon-log-in style="margin-right:5px;"
             | Logout
+            
+- if @error
+  div.container
+    .alert.alert-danger.alert-dismissable.fade.in style=""
+      a.close aria-label="close" data-dismiss="alert" href="#" &times;
+      - if @error == '1'
+        strong Add Failed! &nbsp; &nbsp;
+        | Please make sure the information of the new gateway is legal and not duplicate!
+      - if @error == '2'
+        strong Delete Failed! &nbsp; &nbsp;
+        | Some errors occurred! We will fix the problem as soon as possible!
+
 div.container
   h2 Gateway List
   a.btn.btn-primary.box-shadow1 role="button" style="margin-top:5px;margin-bottom:5px;" data-toggle="modal" data-target="#myModal"
@@ -81,7 +93,7 @@ div.container
             td
               -if a['username']==@username
                 form action="/delete_gateway/?gateway_mac=#{a['gateway_mac']}" method="post"
-                  button.btn.btn-default.btn-sm type="submit"
+                  button.btn.btn-default.btn-sm type="submit" class="confirm"
                     span.glyphicon.glyphicon-trash
                       | Delete
 

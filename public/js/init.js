@@ -1,31 +1,48 @@
-$(function(){
-  $(".dropdown-menu li a").click(function(){
-    var btn = $(this).closest(".dropdown, .dropup").find("span:eq(0)");
-    btn.text($(this).text());
-    btn.attr('sky-id', $(this).attr('sky-id'));
-  });
+$(document).on("click", ".alert", function(e) {
+            bootbox.alert("Hello world!", function() {
+                console.log("Alert Callback");
+            });
+        });
 
-  $(".location-btn").on("click", function(){
-    find_rooms($(this).text());
-    find_airports($(this).text());
-  });
+$(document).on("click", ".confirm", function(e) {
+            var _this = this;
+            e.preventDefault();
+            bootbox.confirm({
+                message: "Are you sure?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    $(_this).closest('form').submit();
+                }
+            });
+        });
 
-  $("#flights-search-btn").on("click", function(){
-    find_flights($("#origin-airport"), $("#destination-airport"));
-  });
-
-  $("#search-form").on("submit", function(e){
-    e.preventDefault();
-    find_movies();
-  });
-
-});
-
-
-// $('.btn').on('click', function() {
-//     var $this = $(this);
-//   $this.button('loading');
-//     setTimeout(function() {
-//        $this.button('reset');
-//    }, 8000);
+// $(function(){
+//     $('.confirm').click(function(e){
+//         var _this = this;
+//         e.preventDefault();
+//         bootbox.confirm("Sure?", function(result) {
+//             if (result) {
+//                 $(_this).closest('form').submit();
+//             }
+//         });
+//     });
 // });
+
+// $('form').submit(function(e) {
+//         var currentForm = this;
+//         e.preventDefault();
+//         bootbox.confirm("Are you sure?", function(result) {
+//             if (result) {
+//                 currentForm.submit();
+//             }
+//         });
+//     });

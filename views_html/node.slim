@@ -19,6 +19,17 @@ div.container-fluid.text-center
           a href="/logout"
             span.glyphicon.glyphicon-log-in style="margin-right:5px;"
             | Logout
+            
+- if @error
+  div.container
+    .alert.alert-danger.alert-dismissable.fade.in style=""
+      a.close aria-label="close" data-dismiss="alert" href="#" &times;
+      - if @error == '1'
+        strong Add Failed! &nbsp; &nbsp;
+        | Please make sure the information of the new node is legal and not duplicate!
+      - if @error == '2'
+        strong Delete Failed! &nbsp; &nbsp;
+        | Some errors occurred! We will fix the problem as soon as possible!
 
 div.container
   h2 #{@app_name}
@@ -71,7 +82,7 @@ div.container
               | #{@username}/#{@app_name}/#{a['node_addr']}
             td
               form action="/delete_node/?app_name=#{a['app_name']}&node_addr=#{a['node_addr']}" method="post"
-                button.btn.btn-default.btn-sm type="submit"
+                button.btn.btn-default.btn-sm type="submit" class="confirm"
                   span.glyphicon.glyphicon-trash
                     | Delete
                   
