@@ -21,12 +21,11 @@ div.container-fluid.text-center
             | Logout
             
 div.container
-  h2
-    a href="/node/?app_name=#{@app_name}"
-      span.glyphicon.glyphicon-menu-left style="margin-right:5px;"
-      | Back To List
-    / | &nbsp; / Node Data
-  h3 Last Data Received of The Node (DevAddr = #{@node_addr})
+  ul.pager
+    li.previous
+      a href="/node/?app_name=#{@app_name}" ⟨ Go Back
+
+  h3 Last Data Received: #{@node_addr}
   
   div.table-responsive
     table.table.table-hover
@@ -34,7 +33,7 @@ div.container
         tr
           th Channel
           th SF
-          th Time (GMT+0)
+          th Time (GMT)
           th Gateway IP
           th RSSI
           th SNR

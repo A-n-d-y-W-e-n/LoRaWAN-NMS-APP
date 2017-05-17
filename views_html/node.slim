@@ -32,6 +32,9 @@ div.container-fluid.text-center
         | Some errors occurred! We will fix the problem as soon as possible!
 
 div.container
+  ul.pager
+    li.previous
+      a href="/app/?username=#{@username}&password=#{@password}" ⟨ Go Back
   h2 #{@app_name}
   a.btn.btn-primary.box-shadow1 role="button" style="margin-top:5px;margin-bottom:5px;" data-toggle="modal" data-target="#myModal"
     span.glyphicon.glyphicon-plus
@@ -66,7 +69,7 @@ div.container
           th DevAddr
           th NwkSKey
           th AppSKey
-          th Topic
+          th MQTT Topic
           th Delete
       tbody
         -@data&.each do |a|

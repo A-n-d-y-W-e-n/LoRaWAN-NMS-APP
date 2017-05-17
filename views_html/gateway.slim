@@ -97,46 +97,10 @@ div.container
                     span.glyphicon.glyphicon-trash
                       | Delete
 
-  div.container id="map" style="width:1000px;height:600px;background:yellow"
-    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=myMap" 
-    javascript:
-      function myMap() {
-        var mapCanvas = document.getElementById("map");
-        var mapOptions = {
-          center: new google.maps.LatLng(24.794758, 120.993379), zoom: 12
-        };
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-      }
-      myMap();
-
-    /  var locations = [
-    /    ['Bondi Beach', -33.890542, 151.274856, 4],
-    /    ['Coogee Beach', -33.923036, 151.259052, 5],
-    /    ['Cronulla Beach', -34.028249, 151.157507, 3],
-    /    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    /    ['Maroubra Beach', -33.950198, 151.259302, 1]
-    /  ];
-     / 
-    /  var map = new google.maps.Map(document.getElementById('map'), {
-    /    zoom: 10,
-    /    center: new google.maps.LatLng(-33.92, 151.25),
-    /    mapTypeId: google.maps.MapTypeId.ROADMAP
-    /  });
-     / 
-    /  var infowindow = new google.maps.InfoWindow();
-     / 
-    /  var marker, i;
-     / 
-    /  for (i = 0; i < locations.length; i++) {  
-    /    marker = new google.maps.Marker({
-    /      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    /      map: map
-    /    });
-     / 
-    /    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    /      return function() {
-    /        infowindow.setContent(locations[i][0]);
-    /        infowindow.open(map, marker);
-    /      }
-    /    })(marker, i));
-    /  }
+  / div.container id="map" style="width:1000px;height:600px;background:yellow"
+  /   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=initMap"
+  /   script src="/js/map.js"
+    
+  div.container id="map_canvas" style="width:1000px;height:600px;"
+    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&sensor=false&callback=initialize"
+    script src="/js/map.js"

@@ -20,7 +20,9 @@ $(document).on("click", ".confirm", function(e) {
                     }
                 },
                 callback: function (result) {
-                    $(_this).closest('form').submit();
+                  if (result) {
+                      $(_this).closest('form').submit();
+                  }
                 }
             });
         });
@@ -29,7 +31,7 @@ $(document).on("click", ".confirm", function(e) {
 //     $('.confirm').click(function(e){
 //         var _this = this;
 //         e.preventDefault();
-//         bootbox.confirm("Sure?", function(result) {
+//         bootbox.confirm("Are you sure?", function(result) {
 //             if (result) {
 //                 $(_this).closest('form').submit();
 //             }
