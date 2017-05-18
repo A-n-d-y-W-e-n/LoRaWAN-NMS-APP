@@ -20,7 +20,7 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
   overflow:scroll;"
   div.container
     h2 style="color:white;" Please Login or Sign Up
-    form style="width:20%; margin-left:40%;"  role="form" action="/app" method="get"
+    form style="width:20%; margin-left:40%;" id="login_form" action="/app" method="get"
       .input-group style="margin-top:20px;margin-bottom:20px;"
         span.input-group-addon
           i.glyphicon.glyphicon-user
@@ -31,15 +31,15 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
           i.glyphicon.glyphicon-lock
         input.form-control required="" pattern=".{6,}" title="6 characters minimum" id="password" name="password" placeholder="Password" type="password"
         
-      button.btn.btn-default type="submit"
-        span.glyphicon.glyphicon-log-in style="margin-right:5px;"
-        | Login
-    button.btn.btn-default style="margin-top:10px;"  data-toggle="modal" data-target="#myModal"
+      / button.btn.btn-default type="submit" form="login_form"
+      /   span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+      /   | Login
+    button.btn.btn-default style="margin-right:10px;"  data-toggle="modal" data-target="#myModal"
       span.glyphicon.glyphicon-user style="margin-right:5px;"
       | Sign Up
     .modal.fade role="dialog" id="myModal"
       .modal-dialog
-        form action="/create_user" method="post"
+        form action="/create_user" method="post" id="sign_up_form"
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button" &times;
@@ -60,7 +60,12 @@ div.container-fluid.text-center id="login" style="background: url(https://s-medi
                   i.glyphicon.glyphicon-lock
                 input.form-control required="" pattern=".{6,}" title="6 characters minimum" id="new_password" name="new_password" placeholder="Password" type="text"
             .modal-footer
-              button.btn.btn-default type="submit" Sign Up
+              button.btn.btn-default type="submit" form="sign_up_form" Sign Up
+    
+    button.btn.btn-default type="submit" form="login_form"
+      span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+      | Login
+
     - if @not_found
       .alert.alert-danger.alert-dismissable.fade.in style="margin-top:50px;width:50%;margin-left:25%;"
         a.close aria-label="close" data-dismiss="alert" href="#" &times;
