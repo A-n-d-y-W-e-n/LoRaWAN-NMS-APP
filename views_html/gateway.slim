@@ -7,7 +7,7 @@ div.container-fluid.text-center
         li.active
           a href="/gateway"  Gateway
         li
-          a href="/app/?username=#{@username}&password=#{@password}"  Application
+          a href="/app"  Application
         li
           a href="/mqtt_broker"  MQTT Broker Information
       ul.nav.navbar-nav.navbar-right
@@ -96,10 +96,6 @@ div.container
                   button.btn.btn-default.btn-sm type="submit" class="confirm"
                     span.glyphicon.glyphicon-trash
                       | Delete
-
-  / div.container id="map" style="width:1000px;height:600px;background:yellow"
-  /   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&callback=initMap"
-  /   script src="/js/map.js"
     
   div.container id="map_canvas" style="width:1000px;height:500px;"
     script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&sensor=false&callback=initialize"

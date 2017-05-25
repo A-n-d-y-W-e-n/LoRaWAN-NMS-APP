@@ -45,8 +45,9 @@ function initialize() {
 
     // Multiple Markers
     var markers = [
-        ['London Eye, London', 51.503454,-0.119562],
-        ['Palace of Westminster, London', 51.499633,-0.124755]
+        ['NTHU-HSNL',24.794527, 120.994025]
+        // ['London Eye, London', 51.503454,-0.119562],
+        // ['Palace of Westminster, London', 51.499633,-0.124755]
     ];
 
     // Info Window Content

@@ -12,19 +12,37 @@ class LORAWAN_NMS_APP < Sinatra::Base
   # MQTT broker info
   get '/mqtt_broker' do
     @username = session[:username]
-    @password = session[:password]
     slim :mqtt_broker
   end
 
   # user info
   get '/user/?' do
     @username = session[:username]
-    @password = session[:password]
 
     results = HTTP.get("#{API_SERVER}/user/?username=#{@username}")
     @data = JSON.parse(results.body)
 
     slim :user
+  end
+
+  # login
+  post '/login/?' do
+    @username = params[:username]
+    @password = params[:password]
+    session[:username] = @username
+
+    if @username.length > 0 and @password.length > 0
+      results = HTTP.get("#{API_SERVER}/user/?username=#{@username.gsub(/( )/, '+')}")
+      @cre = JSON.parse(results.body)
+      if @cre.length > 0 and @cre[0]['password'] == @password
+        session[:login] = 1
+        redirect "/app"
+      else
+        redirect "/?not_found=1#login"
+      end
+    else
+      redirect "/?not_found=1#login"
+    end
   end
 
   # logout
@@ -36,22 +54,13 @@ class LORAWAN_NMS_APP < Sinatra::Base
   # application page
   get '/app/?' do
     @error = params[:error]
-    @username = params[:username]
-    @password = params[:password]
-    session[:username] = @username
-    session[:password] = @password
+    @username = session[:username]
 
-    if @username.length > 0 and @password.length > 0
-      results = HTTP.get("#{API_SERVER}/user/?username=#{@username.gsub(/( )/, '+')}")
-      @cre = JSON.parse(results.body)
-      if @cre.length > 0 and @cre[0]['password'] == @password
-        results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username.gsub(/( )/, '+')}")
-        @data = JSON.parse(results2.body)
-        if results2.code == 200
-          slim :app
-        else
-          redirect "/?not_found=1#login"
-        end
+    if session[:login] == 1
+      results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username.gsub(/( )/, '+')}")
+      @data = JSON.parse(results2.body)
+      if results2.code == 200
+        slim :app
       else
         redirect "/?not_found=1#login"
       end
@@ -64,7 +73,6 @@ class LORAWAN_NMS_APP < Sinatra::Base
   get "/node/?" do
     @error = params[:error]
     @username = session[:username]
-    @password = session[:password]
     @app_name = params[:app_name]
 
     content_type 'application/json'
@@ -77,7 +85,6 @@ class LORAWAN_NMS_APP < Sinatra::Base
   get '/gateway/?' do
     @error = params[:error]
     @username = session[:username]
-    @password = session[:password]
     results = HTTP.get("#{API_SERVER}/gateway")
     if results.code == 200
       @data = JSON.parse(results.body)
@@ -88,38 +95,35 @@ class LORAWAN_NMS_APP < Sinatra::Base
   # create an application
   post '/create_app/?' do
     @username = session[:username]
-    @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
     app_description = params[:app_description].gsub(/( )/, '+')
 
     results = HTTP.post("#{API_SERVER}/create_app/?username=#{@username}&app_name=#{app_name}&app_description=#{app_description}")
     if results.code == 200
-      redirect "/app/?username=#{@username}&password=#{@password}"
+      redirect "/app"
     else
-      redirect "/app/?username=#{@username}&password=#{@password}&error=1"
+      redirect "/app/?error=1"
     end
   end
 
   # delete an application
   post '/delete_app/?' do
     @username = session[:username]
-    @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
 
     results = HTTP.get("#{API_SERVER}/node/?username=#{@username}&app_name=#{app_name}")
     @data = JSON.parse(results.body)
     if @data.length == 0
       results2 = HTTP.post("#{API_SERVER}/delete_app/?username=#{@username}&app_name=#{app_name}")
-      redirect "/app/?username=#{@username}&password=#{@password}"
+      redirect "/app"
     else
-      redirect "/app/?username=#{@username}&password=#{@password}&error=2"
+      redirect "/app/?&error=2"
     end
   end
 
   # add a node
   post '/add_node/?' do
     @username = session[:username]
-    @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
     devaddr = params[:DevAddr]
     nwkskey = params[:NwkSKey]
@@ -128,27 +132,26 @@ class LORAWAN_NMS_APP < Sinatra::Base
       results2 = HTTP.post("#{API_SERVER}/add_node/abp/?DevAddr=#{devaddr}&NwkSKey=#{nwkskey}&AppSKey=#{appskey}")
       if results2.code == 200
         results = HTTP.post("#{API_SERVER}/add_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{devaddr}&node_nwkskey=#{nwkskey}&node_appskey=#{appskey}")
-        redirect "/node/?username=#{@username}&app_name=#{app_name}"
+        redirect "/node/?app_name=#{app_name}"
       else
-        redirect "/node/?username=#{@username}&app_name=#{app_name}&error=1"
+        redirect "/node/?app_name=#{app_name}&error=1"
       end
     else
-      redirect "/node/?username=#{@username}&app_name=#{app_name}&error=1"
+      redirect "/node/?app_name=#{app_name}&error=1"
     end
   end
 
   # delete a node
   post '/delete_node/?' do
     @username = session[:username]
-    @password = session[:password]
     app_name = params[:app_name].gsub(/( )/, '+')
     node_addr = params[:node_addr]
     results = HTTP.post("#{API_SERVER}/delete_node/abp/?DevAddr=#{node_addr}")
     if results.code == 200
       results2 = HTTP.post("#{API_SERVER}/delete_node/?username=#{@username}&app_name=#{app_name}&node_addr=#{node_addr}")
-      redirect "/node/?username=#{@username}&app_name=#{app_name}"
+      redirect "/node/?app_name=#{app_name}"
     else
-      redirect "/node/?username=#{@username}&app_name=#{app_name}&error=2"
+      redirect "/node/?app_name=#{app_name}&error=2"
     end
   end
 
@@ -196,7 +199,6 @@ class LORAWAN_NMS_APP < Sinatra::Base
   # get the node data
   get '/node_data/?' do
     @username = session[:username]
-    @password = session[:password]
     @app_name = params[:app_name]
     @node_addr = params[:node_addr]
 
