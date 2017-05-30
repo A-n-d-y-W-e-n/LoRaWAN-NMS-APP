@@ -208,4 +208,15 @@ class LORAWAN_NMS_APP < Sinatra::Base
     slim :node_data
   end
 
+  # get gateway log
+  get '/gateway_log/?' do
+    @gateway_name = params[:gateway_name]
+    @gateway_ip = params[:gateway_ip]
+
+    results = HTTP.get("#{API_SERVER}/gateway_log/?gateway_ip=#{@gateway_ip}")
+    @data = JSON.parse(results.body)
+
+    slim :gateway_log
+  end
+
 end

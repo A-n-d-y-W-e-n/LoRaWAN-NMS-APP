@@ -80,7 +80,7 @@ div.container
         -@data&.each do |a|
           tr
             td
-              a
+              a href="gateway_log/?gateway_name=#{a['gateway_name']}&gateway_ip=#{a['gateway_ip']}"
                 | #{a['gateway_name']}
             td
               | #{a['gateway_mac']}

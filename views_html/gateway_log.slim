@@ -1,0 +1,45 @@
+div.container-fluid.text-center
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        a.navbar-brand  LoRaWAN Management System
+      ul.nav.navbar-nav
+        li
+          a href="/gateway"  Gateway
+        li.active
+          a href="/app"  Application
+        li
+          a href="/mqtt_broker"  MQTT Broker Information
+      ul.nav.navbar-nav.navbar-right
+        li
+          a href="/user"
+            span.glyphicon.glyphicon-user style="margin-right:5px;"
+            | Hi, #{@username}
+        li
+          a href="/logout"
+            span.glyphicon.glyphicon-log-in style="margin-right:5px;"
+            | Logout
+            
+div.container
+  ul.pager
+    li.previous
+      a href="/gateway" ⟨ Go Back
+
+  h3 Log: #{@gateway_name}
+  
+  div.table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th MAX RSSI
+          th MAX SNR
+          th Coverage
+      tbody
+        -@data&.each do |a|
+          tr
+            td
+              | #{a['MAX(rssi)']}
+            td
+              | #{a['MAX(snr)']}
+            td
+              | ? KM
