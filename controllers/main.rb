@@ -215,7 +215,9 @@ class LORAWAN_NMS_APP < Sinatra::Base
 
     results = HTTP.get("#{API_SERVER}/gateway_log/?gateway_ip=#{@gateway_ip}")
     @data = JSON.parse(results.body)
-
+    if !@data[0]['MIN(rssi)'].nil?
+      @distance = (10 ** ((-50-@data[0]['MIN(rssi)'])/20)).round(2)
+    end
     slim :gateway_log
   end
 

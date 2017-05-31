@@ -31,15 +31,15 @@ div.container
     table.table.table-hover
       thead
         tr
-          th MAX RSSI
-          th MAX SNR
+          th MIN RSSI
+          th MIN SNR
           th Coverage
       tbody
         -@data&.each do |a|
           tr
             td
-              | #{a['MAX(rssi)']}
+              | #{a['MIN(rssi)']}
             td
-              | #{a['MAX(snr)']}
+              | #{a['MIN(snr)']}
             td
-              | ? KM
+              | #{@distance} Meters
