@@ -25,7 +25,7 @@ div.container
     li.previous
       a href="/gateway" ⟨ Go Back
 
-  h3 Log: #{@gateway_name}
+  h3 Details: #{@gateway_name}
   
   div.table-responsive
     table.table.table-hover
@@ -38,8 +38,8 @@ div.container
         -@data&.each do |a|
           tr
             td
-              | #{a['MIN(rssi)']}
+              | #{a['MIN(rssi)']} &nbsp; (dBm)
             td
-              | #{a['MIN(snr)']}
+              | #{a['MIN(snr)']} &nbsp; (dB)
             td
-              | #{@distance} Meters
+              | #{@distance} &nbsp; (m)
