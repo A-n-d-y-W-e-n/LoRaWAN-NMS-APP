@@ -210,6 +210,7 @@ class LORAWAN_NMS_APP < Sinatra::Base
 
   # get gateway log
   get '/gateway_log/?' do
+    @username = session[:username]
     @gateway_name = params[:gateway_name]
     @gateway_ip = params[:gateway_ip]
 

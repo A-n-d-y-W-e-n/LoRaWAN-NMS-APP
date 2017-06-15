@@ -89,18 +89,18 @@ function initialize() {
 
     var cityCircle = new google.maps.Circle({
                 strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
+                strokeOpacity: 0.3,
                 strokeWeight: 2,
                 fillColor: '#FF0000',
-                fillOpacity: 0.35,
+                fillOpacity: 0.2,
                 map: map,
                 center: {lat: 24.794527, lng: 120.994025},
-                radius: 3000
+                radius: 200
               });
 
     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(14);
+        this.setZoom(17);
         google.maps.event.removeListener(boundsListener);
     });
 
