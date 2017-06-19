@@ -12,13 +12,14 @@ html
     link rel="stylesheet" href="/css/style.css" type="text/css"
 
   body
-  
-    == yield
-    / JQuery and Bootstrap JS
     script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
     script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"
+    script src="http://code.highcharts.com/highcharts.js"
+    script src="https://code.highcharts.com/modules/exporting.js"
+    
+    == yield
+    
+    / JQuery and Bootstrap JS
     script src="/js/init.js"
     script src="/js/smooth_scroll.js"
-    
-    / include :flash_bar
