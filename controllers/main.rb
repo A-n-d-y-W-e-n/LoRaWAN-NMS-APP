@@ -56,10 +56,24 @@ class LORAWAN_NMS_APP < Sinatra::Base
     @error = params[:error]
     @username = session[:username]
 
+    @test = [{"name"=>"Smart Greenhouse","number"=>3},{"name"=>"Smart Grjdfiejwf","number"=>4}]
+
+
     if session[:login] == 1
       results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username.gsub(/( )/, '+')}")
       @data = JSON.parse(results2.body)
       if results2.code == 200
+        @app_node_number = []
+
+        # get the number of nodes of each application
+        @data.each do |a|
+          results3 = HTTP.get("#{API_SERVER}/app/node_number/?app_name=#{a['app_name'].gsub(/( )/, '+')}&username=#{@username.gsub(/( )/, '+')}")
+          @temp = JSON.parse(results3.body)
+          hash = { :app_name => "#{a['app_name']}", :node_number => "#{@temp[0]['COUNT(app_name)']}" }
+          @app_node_number.push(hash)
+        end
+        @app_node_number = @app_node_number.to_json
+
         slim :app
       else
         redirect "/?not_found=1#login"

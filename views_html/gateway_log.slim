@@ -25,24 +25,24 @@ div.container
     li.previous
       a href="/gateway" ⟨ Go Back
 
-  h3 Details: #{@gateway_name}
+  / h3 Details: #{@gateway_name}
   
-  div.table-responsive
-    table.table.table-hover
-      thead
-        tr
-          th MIN RSSI
-          th MIN SNR
-          th Coverage
-      tbody
-        -@data&.each do |a|
-          tr
-            td
-              | #{a['MIN(rssi)']} &nbsp; (dBm)
-            td
-              | #{a['MIN(snr)']} &nbsp; (dB)
-            td
-              | #{@distance} &nbsp; (m)
+  / div.table-responsive
+  /   table.table.table-hover
+  /     thead
+  /       tr
+  /         th MIN RSSI
+  /         th MIN SNR
+  /         th Coverage
+  /     tbody
+  /       -@data&.each do |a|
+  /         tr
+  /           td
+  /             | #{a['MIN(rssi)']} &nbsp; (dBm)
+  /           td
+  /             | #{a['MIN(snr)']} &nbsp; (dB)
+  /           td
+  /             | #{@distance} &nbsp; (m)
               
 div.container id="container" style="min-width: 310px; height: 400px; margin: 0 auto"
   javascript:
@@ -65,14 +65,14 @@ div.container id="container" style="min-width: 310px; height: 400px; margin: 0 a
                         var series = this.series[0];
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = Math.random();
+                                y = Math.floor((Math.random() * 10) + 1);
                             series.addPoint([x, y], true, true);
                         }, 1000);
                     }
                 }
             },
             title: {
-                text: 'Live random data'
+                text: '#{@gateway_name} Live Traffic'
             },
             xAxis: {
                 type: 'datetime',
@@ -80,7 +80,7 @@ div.container id="container" style="min-width: 310px; height: 400px; margin: 0 a
             },
             yAxis: {
                 title: {
-                    text: 'Value'
+                    text: 'message'
                 },
                 plotLines: [{
                     value: 0,
@@ -112,7 +112,7 @@ div.container id="container" style="min-width: 310px; height: 400px; margin: 0 a
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: Math.random()
+                            y: Math.floor((Math.random() * 10) + 1)
                         });
                     }
                     return data;

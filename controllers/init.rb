@@ -5,6 +5,7 @@ require 'slim/include'
 require 'econfig'
 require 'http'
 require 'rack-flash'
+require 'json'
 
 require_relative 'base'
 

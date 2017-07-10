@@ -80,8 +80,18 @@ div.container
                   span.glyphicon.glyphicon-trash
                     | Delete
 
-div.container id="container" style="min-width: 400px; height: 400px; max-width: 1000px; margin: 0 auto"
+div.container id="container" style="min-width: 300px; height: 400px; max-width: 70%; margin: 0 auto;padding-right:10%;"
   javascript:
+    var jsontext = "#{@app_node_number}";
+    var data = JSON.parse(jsontext.replace(/&quot;/g, '\"'));
+    var sum = 0;
+    var mydata = [];
+    for (var i = 0; i < data.length; i++) {
+      mydata[i] = {};
+      mydata[i]['name'] = data[i]['app_name'];
+      mydata[i]['y'] = parseInt(data[i]['node_number']);
+    }
+    
     Highcharts.chart('container', {
         chart: {
             plotBackgroundColor: null,
@@ -93,7 +103,8 @@ div.container id="container" style="min-width: 400px; height: 400px; max-width: 
             text: 'Application Nodes'
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.y}</b>'
         },
         plotOptions: {
             pie: {
@@ -109,29 +120,9 @@ div.container id="container" style="min-width: 400px; height: 400px; max-width: 
             }
         },
         series: [{
-            name: 'Brands',
+            name: 'The number of nodes',
             colorByPoint: true,
-            // -@data&.each do |a|
-            data: [{
-                name: 'Smart Greenhouse',
-                y: 56.33
-            }, {
-                name: 'Smart Campus',
-                y: 24.03,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Firefox',
-                y: 10.38
-            }, {
-                name: 'Safari',
-                y: 4.77
-            }, {
-                name: 'Opera',
-                y: 0.91
-            }, {
-                name: 'Proprietary or Undetectable',
-                y: 0.2
-            }]
+          
+            data: mydata
         }]
     });
