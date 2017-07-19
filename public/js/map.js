@@ -1,43 +1,14 @@
-// var marker;
-//
-// function initMap() {
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 13,
-//     center: {lat: 59.325, lng: 18.070}
-//   });
-//
-//   marker = new google.maps.Marker({
-//     map: map,
-//     draggable: true,
-//     animation: google.maps.Animation.DROP,
-//     position: {lat: 59.327, lng: 18.067}
-//   });
-//   marker.addListener('click', toggleBounce);
-// }
-//
-// function toggleBounce() {
-//   if (marker.getAnimation() !== null) {
-//     marker.setAnimation(null);
-//   } else {
-//     marker.setAnimation(google.maps.Animation.BOUNCE);
-//   }
-// }
-// initMap();
-
-
-// jQuery(function($) {
-//     // Asynchronously Load the map API
-//     var script = document.createElement('script');
-//     script.src = "https://maps.googleapis.com/maps/api/js??key=AIzaSyAABQ2Xfin8_fQBIn8EQbs4R3qLNssfQ9s&sensor=false&callback=initialize";
-//     document.body.appendChild(script);
-// });
-
 function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
         mapTypeId: 'roadmap'
     };
+    var circle_red = '/image/red.png';
+    var circle_blue = '/image/blue.png';
+    var circle_yellow = '/image/yellow.png';
+    var circle_pink = '/image/pink.png';
+    var circle_green = '/image/green.png';
 
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -45,9 +16,27 @@ function initialize() {
 
     // Multiple Markers
     var markers = [
-        ['NTHU-HSNL',24.794527, 120.994025]
-        // ['London Eye, London', 51.503454,-0.119562],
-        // ['Palace of Westminster, London', 51.499633,-0.124755]
+        ['Gateway: NTHU-HSNL',24.794527, 120.994025, null, google.maps.Animation.DROP],
+        ['Smart Campus: cccccccc',24.794848, 120.992206, circle_green, google.maps.Animation.DROP],
+        ['Farm: dddddddd',24.795772, 120.992232, circle_green, google.maps.Animation.DROP],
+        ['Smart Greenhouse: 05000023',24.793213, 120.993241, circle_green, google.maps.Animation.DROP],
+        ['Smart Greenhouse: bbbbbbbb',24.794603, 120.993806, circle_green, google.maps.Animation.DROP],
+        ['Smart Greenhouse: aaaaaaaa',24.794581, 120.994431, circle_green, google.maps.Animation.DROP],
+        ['Parking: 0000038f',24.794663, 120.995287, circle_red, google.maps.Animation.DROP],
+        ['Parking: 0d0100de',24.794705, 120.995182, circle_red, google.maps.Animation.DROP],
+        ['Parking: 00000393',24.795091, 120.994307, circle_red, google.maps.Animation.DROP],
+        ['Parking: 00000390',24.795162, 120.994158, circle_red, google.maps.Animation.DROP],
+        ['Parking: 0d01009b',24.794851, 120.994828, circle_red, google.maps.Animation.DROP],
+        ['Parking: 00000394',24.795143, 120.994191, circle_red, google.maps.Animation.DROP],
+        ['Parking: 00000397',24.795123, 120.994240, circle_red, google.maps.Animation.DROP],
+        ['Parking: 0d0100a1',24.794845, 120.994918, circle_red, google.maps.Animation.DROP],
+        ['Parking: 0d0100d6',24.794811, 120.994934, circle_red, google.maps.Animation.DROP],
+        ['Parking: 0d0100ac',24.794762, 120.995054, circle_red, google.maps.Animation.DROP],
+    ];
+
+    var legends = [
+        ['Nodes with GPS  <br> &nbsp; &nbsp; (Fixed Location)', circle_red],
+        ['Nodes without GPS <br> &nbsp; &nbsp; (Estimated Location)', circle_green],
     ];
 
     // Info Window Content
@@ -70,8 +59,9 @@ function initialize() {
         bounds.extend(position);
         marker = new google.maps.Marker({
             position: position,
-            animation: google.maps.Animation.DROP,
+            animation: markers[i][4],
             map: map,
+            icon: markers[i][3],
             title: markers[i][0]
         });
 
@@ -92,11 +82,22 @@ function initialize() {
                 strokeOpacity: 0.3,
                 strokeWeight: 2,
                 fillColor: '#FF0000',
-                fillOpacity: 0.2,
+                fillOpacity: 0.1,
                 map: map,
                 center: {lat: 24.794527, lng: 120.994025},
-                radius: 200
+                radius: 250
               });
+
+    var legend = document.getElementById('legend');
+        for (i = 0; i < legends.length; i++ ) {
+          var name = legends[i][0];
+          var icon = legends[i][1];
+          var div = document.createElement('div');
+          div.innerHTML = '<img src="' + icon + '"> ' + name;
+          legend.appendChild(div);
+        }
+
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 
     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {

@@ -56,9 +56,6 @@ class LORAWAN_NMS_APP < Sinatra::Base
     @error = params[:error]
     @username = session[:username]
 
-    @test = [{"name"=>"Smart Greenhouse","number"=>3},{"name"=>"Smart Grjdfiejwf","number"=>4}]
-
-
     if session[:login] == 1
       results2 = HTTP.get("#{API_SERVER}/app/?username=#{@username.gsub(/( )/, '+')}")
       @data = JSON.parse(results2.body)
