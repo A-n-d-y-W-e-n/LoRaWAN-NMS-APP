@@ -17,11 +17,9 @@ function initialize() {
     // Multiple Markers
     var markers = [
         ['Gateway: NTHU-HSNL',24.794527, 120.994025, null, google.maps.Animation.DROP],
-        ['Smart Campus: cccccccc',24.794848, 120.992206, circle_green, google.maps.Animation.DROP],
-        ['Farm: dddddddd',24.795772, 120.992232, circle_green, google.maps.Animation.DROP],
         ['Smart Greenhouse: 05000023',24.793213, 120.993241, circle_green, google.maps.Animation.DROP],
-        ['Smart Greenhouse: bbbbbbbb',24.794603, 120.993806, circle_green, google.maps.Animation.DROP],
-        ['Smart Greenhouse: aaaaaaaa',24.794581, 120.994431, circle_green, google.maps.Animation.DROP],
+        ['Smart Greenhouse: 05010413',24.794603, 120.993806, circle_green, google.maps.Animation.DROP],
+        ['Smart Greenhouse: 05010413',24.794581, 120.994431, circle_green, google.maps.Animation.DROP],
         ['Parking: 0000038f',24.794663, 120.995287, circle_red, google.maps.Animation.DROP],
         ['Parking: 0d0100de',24.794705, 120.995182, circle_red, google.maps.Animation.DROP],
         ['Parking: 00000393',24.795091, 120.994307, circle_red, google.maps.Animation.DROP],
@@ -85,7 +83,7 @@ function initialize() {
                 fillOpacity: 0.1,
                 map: map,
                 center: {lat: 24.794527, lng: 120.994025},
-                radius: 250
+                radius: 200
               });
 
     var legend = document.getElementById('legend');
