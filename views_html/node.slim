@@ -98,18 +98,61 @@ div.container style="width:80%; height:400px;" id="container"
     
     function random_data() {
       var arr = [];
-      for (var i = 0; i < 8; i++) {
-        x = Math.floor((Math.random() * 41) + 45);
-        arr.push(x);
+      if (app_name == 'Smart Greenhouse'){
+        for (var i = 0; i < 8; i++) {
+          x = 12;
+          arr.push(x);
+        }
+      }
+      else {
+        for (var i = 0; i < 8; i++) {
+          x = Math.floor((Math.random() * 41) + 45);
+          arr.push(x);
+        }
       }
       return arr
     }
     
     var myseries = [];
-    for (var i = 0; i < data.length; i++) {
-      myseries[i] = {};
-      myseries[i]['name'] = data[i]['node_addr'];
-      myseries[i]['data'] = random_data();
+    if (app_name == 'Parking'){
+      myseries=[{
+            name: '00000393',
+            data: [50, 75, 47, 53, 69, 78, 58, 71]
+        }, {
+            name: '00000394',
+            data: [60, 52, 74, 62, 49, 56, 44, 77]
+        }, {
+            name: '00000390',
+            data: [46, 67, 51, 56, 48, 62, 55, 47]
+        }, {
+            name: '00000397',
+            data: [67, 56, 44, 55, 42, 57, 72, 65]
+        }, {
+            name: '0000038f',
+            data: [55, 43, 57, 71, 43, 65, 45, 49]
+        }, {
+            name: '0d01009b',
+            data: [67, 77, 52, 48, 57, 71, 45, 56]
+        }, {
+            name: '0d0100de',
+            data: [44, 60, 67, 59, 56, 42, 64, 55]
+        }, {
+            name: '0d0100a1',
+            data: [51, 65, 71, 45, 55, 66, 54, 65]
+        }, {
+            name: '0d0100d6',
+            data: [67, 57, 49, 52, 56, 69, 49, 52]
+        }, {
+            name: '0d0100ac',
+            data: [54, 55, 60, 54, 71, 68, 55, 57]
+        }]
+    }
+    else{
+      for (var i = 0; i < data.length; i++) {
+        myseries[i] = {};
+        myseries[i]['name'] = data[i]['node_addr'];
+        myseries[i]['data'] = random_data();
+      }
     }
     
     Highcharts.chart('container', {
